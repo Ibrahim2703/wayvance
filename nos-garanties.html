@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Garanties | Wayvance Assurances</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Découvrez le tableau des garanties de Wayvance Assurances. Remboursements, plafonds et conditions de couverture santé.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .table-container {
+            margin: 3rem 0;
+            overflow-x: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .garanties-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .garanties-table th {
+            background-color: var(--color-primary);
+            color: white;
+            text-align: left;
+            padding: 1.2rem;
+            font-weight: 600;
+        }
+
+        .garanties-table td {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .garanties-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .garanties-table tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        .garanties-table tr:hover {
+            background-color: #f5f8ff;
+        }
+
+        .category-row {
+            background-color: #f0f4f8 !important;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .taux-cell {
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        .section-garanties {
+            padding: 4rem 0;
+        }
+
+        .annexe-section {
+            background-color: #f9f9f9;
+            padding: 4rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.jpg" alt="Wayvance Assurances Logo">
+                </a>
+
+                <nav>
+                    <div class="hamburger">☰</div>
+                    <ul class="nav-menu">
+                        <li><a href="index.html#accueil" class="nav-link">Accueil</a></li>
+                        <li><a href="index.html#produits" class="nav-link">Nos Offres</a></li>
+                        <li><a href="index.html#simulateur" class="nav-link">Nos Tarifs</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">Réseau de Soins</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="pharmacies.html" class="dropdown-item">PHARMACIES PARTENAIRES</a></li>
+                                <li><a href="prestataires.html" class="dropdown-item">PRESTATAIRES PARTENAIRES</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="apropos.html" class="nav-link">À Propos</a></li>
+                        <li><a href="index.html#contact" class="btn btn-contact">Nous Contacter</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header-contact-bar">
+                <div class="phone-info">
+                    <span class="contact-icon">📞</span>
+                    <span>(+225) 07 78 94 99 09</span>
+                </div>
+                <div class="location-info">
+                    <span class="contact-icon">📍</span>
+                    <span>ABIDJAN-Treichville</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Table -->
+    <section class="section-garanties" style="padding-top: 120px; padding-bottom: 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tableau des Garanties</h2>
+                <p>Retrouvez le détail de vos prestations et les niveaux de remboursement par type de soin.</p>
+            </div>
+
+            <div class="table-container">
+                <table class="garanties-table">
+                    <thead>
+                        <tr>
+                            <th>NATURE DES PRESTATIONS</th>
+                            <th>TAUX</th>
+                            <th>PLAFONDS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="category-row">
+                            <td colspan="3">SOINS AMBULATOIRES ET HOSPITALIERS MALADIE / ACCIDENT</td>
+                        </tr>
+                        <tr>
+                            <td>Consultations / Visites (Généraliste, Spécialiste, Professeur)</td>
+                            <td class="taux-cell">80%</td>
+                            <td>Frais réels</td>
+                        </tr>
+                        <tr>
+                            <td>Soins divers</td>
+                            <td class="taux-cell">80%</td>
+                            <td>150 000 FCFA / AN</td>
+                        </tr>
+                        <tr>
+                            <td>Analyses médicales</td>
+                            <td class="taux-cell">80%</td>
+                            <td>Inclus</td>
+                        </tr>
+                        <tr>
+                            <td>Radiologie & Imageries médicales</td>
+                            <td class="taux-cell">80%</td>
+                            <td>Inclus</td>
+                        </tr>
+                        <tr>
+                            <td>Chirurgie (y compris frais de chambre)</td>
+                            <td class="taux-cell">80%</td>
+                            <td>400 000 FCFA</td>
+                        </tr>
+                        <tr>
+                            <td>Frais pharmaceutiques</td>
+                            <td class="taux-cell">80%</td>
+                            <td>200 000 FCFA</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamines & Fortifiants</td>
+                            <td class="taux-cell">-</td>
+                            <td>Non garanti</td>
+                        </tr>
+                        <tr>
+                            <td>Vaccins</td>
+                            <td class="taux-cell">80%</td>
+                            <td>Non garanti</td>
+                        </tr>
+                        <tr>
+                            <td>Kinésithérapie / Rééducation</td>
+                            <td class="taux-cell">80%</td>
+                            <td>100 000 FCFA / AN</td>
+                        </tr>
+
+                        <tr class="category-row">
+                            <td colspan="3">SOINS DENTAIRES</td>
+                        </tr>
+                        <tr>
+                            <td>Soins dentaires courants</td>
+                            <td class="taux-cell">80%</td>
+                            <td>90 000 FCFA / AN</td>
+                        </tr>
+                        <tr>
+                            <td>Prothèses dentaires</td>
+                            <td class="taux-cell">0%</td>
+                            <td>Non garanti</td>
+                        </tr>
+
+                        <tr class="category-row">
+                            <td colspan="3">HOSPITALISATION (Maladie / Accident)</td>
+                        </tr>
+                        <tr>
+                            <td>Frais de séjour (Chambre)</td>
+                            <td class="taux-cell">80%</td>
+                            <td>20 000 FCFA / JOUR</td>
+                        </tr>
+
+                        <tr class="category-row">
+                            <td colspan="3">MATERNITÉ</td>
+                        </tr>
+                        <tr>
+                            <td>Accouchement Simple</td>
+                            <td class="taux-cell">80%</td>
+                            <td>200 000 FCFA</td>
+                        </tr>
+                        <tr>
+                            <td>Accouchement Multiple</td>
+                            <td class="taux-cell">80%</td>
+                            <td>250 000 FCFA</td>
+                        </tr>
+                        <tr>
+                            <td>Accouchement Chirurgical</td>
+                            <td class="taux-cell">80%</td>
+                            <td>350 000 FCFA</td>
+                        </tr>
+                        <tr>
+                            <td>Accouchement en centre public (Forfait)</td>
+                            <td class="taux-cell">Forfait</td>
+                            <td>50 000 FCFA</td>
+                        </tr>
+                        <tr>
+                            <td>Examens et petits soins liés</td>
+                            <td class="taux-cell">80%</td>
+                            <td>100 000 FCFA</td>
+                        </tr>
+
+                        <tr class="category-row">
+                            <td colspan="3">OPTIQUE (Tous les 2 ans)</td>
+                        </tr>
+                        <tr>
+                            <td>Verres et Montures - Adulte</td>
+                            <td class="taux-cell">80%</td>
+                            <td>50 000 FCFA</td>
+                        </tr>
+                        <tr>
+                            <td>Verres et Montures - Enfant</td>
+                            <td class="taux-cell">80%</td>
+                            <td>25 000 FCFA</td>
+                        </tr>
+
+                        <tr class="category-row">
+                            <td colspan="3">AUTRES PRESTATIONS</td>
+                        </tr>
+                        <tr>
+                            <td>Transport Ambulance</td>
+                            <td class="taux-cell">80%</td>
+                            <td>20 000 FCFA</td>
+                        </tr>
+                        <tr>
+                            <td>Remboursements (Nomenclature tarifaire)</td>
+                            <td class="taux-cell">50%</td>
+                            <td>Selon barème</td>
+                        </tr>
+
+                        <tr style="background-color: var(--color-primary); color: white; font-weight: bold;">
+                            <td>PLAFOND ANNUEL PAR PERSONNE</td>
+                            <td>-</td>
+                            <td>1 000 000 FCFA</td>
+                        </tr>
+                        <tr style="background-color: var(--color-secondary); color: white; font-weight: bold;">
+                            <td>PLAFOND GLOBAL PAR FAMILLE</td>
+                            <td>-</td>
+                            <td>3 000 000 FCFA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Documents Section -->
+    <section class="section-garanties" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Documents requis pour l'adhésion</h2>
+                <p>Préparez votre dossier pour une souscription rapide en 48h.</p>
+            </div>
+
+            <div class="value-cards-grid">
+                <div class="value-card">
+                    <div class="value-card-header">
+                        <span class="icon">🪪</span>
+                        <h4>Adhérent Principal</h4>
+                    </div>
+                    <p>Photocopie CNI, Passeport ou Carte Consulaire.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-card-header">
+                        <span class="icon">💍</span>
+                        <h4>Conjoint</h4>
+                    </div>
+                    <p>Photocopie pièce d'identité ou document équivalent.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-card-header">
+                        <span class="icon">👶</span>
+                        <h4>Enfants</h4>
+                    </div>
+                    <p>Photocopie de l'acte de naissance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="color:white; margin-bottom:1rem; font-size:1.5rem;">Wayvance</h3>
+                    <p style="color:#aaa; line-height:1.6;">
+                        Rendre l'assurance accessible à tous les Ivoiriens. Solutions flexibles pour les professionnels
+                        et les familles.
+                    </p>
+                </div>
+                <div>
+                    <h4>Nos Services</h4>
+                    <ul>
+                        <li><a href="index.html#produits">Assurance Santé</a></li>
+                        <li><a href="index.html#produits">Assurance Auto</a></li>
+                        <li><a href="index.html#simulateur">Nos Tarifs</a></li>
+                        <li><a href="index.html#contact">Déclaration Sinistre</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Informations</h4>
+                    <ul>
+                        <li><a href="apropos.html">Qui sommes-nous ?</a></li>
+                        <li><a href="#">Conditions Générales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Suivez-nous</h4>
+                    <p style="margin-bottom:1rem; color:#aaa;">Rejoignez notre communauté</p>
+                    <div style="display:flex; gap:1rem;">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Wayvance Assurances. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

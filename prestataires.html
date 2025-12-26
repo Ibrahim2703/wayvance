@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestataires Partenaires | Wayvance Assurances</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Liste des prestataires de soins partenaires du réseau Wayvance Assurances.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.jpg" alt="Wayvance Assurances Logo">
+                </a>
+
+                <nav>
+                    <div class="hamburger">☰</div>
+                    <ul class="nav-menu">
+                        <li><a href="index.html#accueil" class="nav-link">Accueil</a></li>
+                        <li><a href="index.html#produits" class="nav-link">Nos Offres</a></li>
+                        <li><a href="index.html#simulateur" class="nav-link">Nos Tarifs</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="nav-link active dropdown-toggle">Réseau de Soins</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="pharmacies.html" class="dropdown-item">PHARMACIES PARTENAIRES</a></li>
+                                <li><a href="prestataires.html" class="dropdown-item">PRESTATAIRES PARTENAIRES</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="apropos.html" class="nav-link">À Propos</a></li>
+                        <li><a href="index.html#contact" class="btn btn-contact">Nous Contacter</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header-contact-bar">
+                <div class="phone-info">
+                    <span class="contact-icon">📞</span>
+                    <span>(+225) 07 78 94 99 09</span>
+                </div>
+                <div class="location-info">
+                    <span class="contact-icon">📍</span>
+                    <span>ABIDJAN-Treichville</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <section class="page-content" style="padding: 150px 0 60px;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Prestataires Partenaires</h2>
+                <p>Cliniques, centres de santé, opticiens et laboratoires partenaires. Utilisez la barre de recherche
+                    pour filtrer.</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="partners-search-container">
+                <input type="text" id="searchInput" class="partners-search-input"
+                    placeholder="Rechercher un prestataire, une commune..." onkeyup="filterTable()">
+                <span class="partners-search-icon">🔍</span>
+            </div>
+
+            <!-- Table Container -->
+            <div class="partners-table-wrapper">
+                <table class="partners-table" id="providerTable">
+                    <thead>
+                        <tr>
+                            <th>Commune / Ville</th>
+                            <th>Nom du Prestataire</th>
+                            <th>Situation Géographique</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Rows will be populated by JS -->
+                    </tbody>
+                </table>
+                <div id="noResults" class="no-results-message">
+                    Aucun prestataire trouvé pour cette recherche.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Data Source
+        const prestataires = [
+            // PORT-BOUËT
+            { commune: "PORT-BOUËT", nom: "HÔPITAL GENERAL DE PORT-BOUET", loc: "EN FACE DE L'ABATTOIRE", tel: "27 21 27 85 00 / 07 07 86 99 20" },
+            { commune: "PORT-BOUËT", nom: "CENTRE MEDICAL EMERAUDE", loc: "EN FACE DU CENTRE COMMERCIAL", tel: "27 21 27 57 58 / 07 57 97 98 02" },
+            { commune: "PORT-BOUËT", nom: "CLINIQUE ST MICHEL", loc: "1ER CORRIDOR", tel: "07 77 77 58 03 / 05 05 88 88 82" },
+            { commune: "PORT-BOUËT", nom: "CENTRE DE SANTE DU CROISSANT ROUGE", loc: "ADJOUFFOU, JUSTE AVANT LE 2EME PONT PIETON", tel: "27 21 58 72 19" },
+            { commune: "PORT-BOUËT", nom: "CENTRE MEDICAL SAINTE MARIE", loc: "QUARTIER HOTEL DE VILLE 2", tel: "07 07 03 74 77" },
+            { commune: "PORT-BOUËT", nom: "GROUPE MEDICAL COTE D’IVOIRE TECHNO", loc: "VRIDI, ZONE INDUSTRIELLE CARREFOUR SANIA", tel: "01 41 30 04 03 / 27 21 27 43 49" },
+            { commune: "PORT-BOUËT", nom: "CLINIQUE MALON", loc: "VERS LA MOSQUEE", tel: "27 21 27 80 44 / 07 78 34 84 29" },
+            { commune: "PORT-BOUËT", nom: "CABINET MEDICAL SHAMMA", loc: "GONZAGUEVILLE CITE COCOTERAIE", tel: "01-71-28-96-38 / 07-49-46-73-68" },
+            { commune: "PORT-BOUËT", nom: "OCEAN VISION", loc: "CENTRE COMMERCIAL DE L’IMMEUBLE OCEAN", tel: "27 21 27 93 26 / 01 02 85 80 20" },
+            { commune: "PORT-BOUËT", nom: "CENTRE MEDICO SOCIAL CARITAS", loc: "NON LOIN DU MARCHE DE NUIT", tel: "27 21 27 77 32 / 07 47 29 93 95" },
+            { commune: "PORT-BOUËT", nom: "CABINET DENTAIRE DJIGUI", loc: "NON LOIN DU MARCHE AU-DESSUS DE LA PHARMACIE DJIGUI", tel: "27 21 27 64 31 / 07 59 71 77 37" },
+            { commune: "PORT-BOUËT", nom: "CENTRE MEDICAL VICTORIA", loc: "GONZAGUE CARREFOUR CHIEN APRES LE CORRIDOR", tel: "07 79 62 64 00" },
+            { commune: "PORT-BOUËT", nom: "CSUCOM DE GONZAGUEVILLE", loc: "GONZAGUEVILLE CORRIDOR", tel: "07 08 41 01 39 / 07 07 59 99 57" },
+            { commune: "PORT-BOUËT", nom: "OPTIKRISMA", loc: "DERRIERE LE MARCHE DE NUIT", tel: "27 33 76 03 97 / 07 69 81 42 32" },
+            { commune: "PORT-BOUËT", nom: "CENTRE MEDICAL BENEDICTE", loc: "ANANI, A COTE DE L'EGLISE CATHOLIQUE ST FRANCOIS", tel: "27 33 75 24 57 / 05 00 59 29 29" },
+            { commune: "PORT-BOUËT", nom: "CENTRE MEDICAL NOA AARON", loc: "GONZAGUEVILLE TERRE ROUGE CARREFOUR COLONEL", tel: "07 10 23 66 52 / 05 03 50 58 14" },
+            // KOUMASSI
+            { commune: "KOUMASSI", nom: "CLINIQUE LIRING", loc: "REMBLAIS", tel: "27 21 28 84 02 / 05 05 68 05 48" },
+            { commune: "KOUMASSI", nom: "CABINET VOIR +OPTIC", loc: "REMBLAIS NON LOIN DE KAHIRA", tel: "07 8 55 70 58 / 05 06 36 84 94" },
+            { commune: "KOUMASSI", nom: "CABINET D'OPHTALMOLOGIE HOMIEN", loc: "SICOGI TERMINUS BUS 13 ET 26", tel: "27 21 36 19 26" },
+            { commune: "KOUMASSI", nom: "CLINIQUE IRYS", loc: "PRODOMO, AU-DESSUS DE LA PHARMACIE MESANO", tel: "27 21 36 36 21 / 01 01 15 53 09" },
+            { commune: "KOUMASSI", nom: "CLINIQUE LES RUCHES PLUS", loc: "RESIDENCE AGOUTI", tel: "27 21 36 17 03 / 07 79 44 76 55" },
+            { commune: "KOUMASSI", nom: "RIMCA (RADIOLOGIE)", loc: "BLD DU GABON. SICOGI 1", tel: "07 07 92 80 35 / 07 77 59 94 60" },
+            { commune: "KOUMASSI", nom: "HÔPITAL GENERAL DE KOUMASSI", loc: "NON LOIN DE LA PHARMACIE DE KOUMASSI", tel: "27 21 28 16 69" },
+            { commune: "KOUMASSI", nom: "CENTRE MEDICAL TASSALA", loc: "MESANO, CITE SOPIM LOT 601", tel: "27 21 53 77 54 / 07 89 53 59 55" },
+            { commune: "KOUMASSI", nom: "OPTIKRISMA", loc: "EN FACE DE L'ECOLE LAC", tel: "26 21 51 90 86 / 05 06 41 40 81" },
+            { commune: "KOUMASSI", nom: "OPTIC STAR", loc: "BOULEVARD DU GABON", tel: "07 08 23 89 13 / 01 01 38 22 38" },
+            { commune: "KOUMASSI", nom: "VAN'OPTIC", loc: "CAMP COMMANDO PRES DE LA STATION SHELL", tel: "07 10 00 02 73 / 05 74 45 45 44" },
+            { commune: "KOUMASSI", nom: "CENTRE MEDICAL SPECIALISE DU REMBLAIS", loc: "A 100 M DE LA PHARMACIE KAHIRA", tel: "27 21 77 04 21 / 07 68 84 84 21" },
+            { commune: "KOUMASSI", nom: "CENTRE OPTIQUE DE KOUMASSI", loc: "SICOGI NON LOIN DU CAMP COMMANDO", tel: "07 87 22 49 82" },
+            // MARCORY
+            { commune: "MARCORY", nom: "CENTRE MEDICAL DU DIABETE", loc: "INJS, TERMINUS DU BUS 04", tel: "27 21 28 14 34" },
+            { commune: "MARCORY", nom: "POLYMED", loc: "RUE DE LA PAIX", tel: "27 21 26 89 22" },
+            { commune: "MARCORY", nom: "CLINIQUE MEDICALE CARLY", loc: "BIETRY RESIDENCE BLUE CUBE", tel: "27 21 24 60 05" },
+            { commune: "MARCORY", nom: "HÔPITAL GENERAL DE MARCORY", loc: "NON LOIN DE L'HOTEL MASSARANA", tel: "27 21 26 61 94" },
+            { commune: "MARCORY", nom: "CLINIQUE LA VIERGE DES NOCES", loc: "BOULEVARD LA LORAINE", tel: "27 21 26 52 45" },
+            { commune: "MARCORY", nom: "CLINIQUE SAINTE NANCY", loc: "RESIDENTIEL RUE DE LA PAIX", tel: "27 21 26 33 68" },
+            { commune: "MARCORY", nom: "CLINIQUE LES ARCADES", loc: "ZONE 4", tel: "27 21 24 42 34" },
+            { commune: "MARCORY", nom: "CLINIQUE MEDICAL MEDITEX", loc: "SAINTE THERESE", tel: "27 21 26 31 76" },
+            { commune: "MARCORY", nom: "OCEAN VISION", loc: "RESIDENTIEL A 50 M DE L’IMMEUBLE", tel: "27 21 26 48 88" },
+            { commune: "MARCORY", nom: "CMIDA (IMAGERIE)", loc: "ZONE 4, SOUS L’ECHANGEUR", tel: "27 21 25 44 43" },
+            { commune: "MARCORY", nom: "CENTRE MEDICAL DU 3e PONT", loc: "FACE DE LA GARE DE BASSAM", tel: "27 21 26 31 45" },
+            { commune: "MARCORY", nom: "FASHION VISION SARL", loc: "ZONE 4 RUE DU 7 DECEMBRE", tel: "07-87-67-99-86" },
+            { commune: "MARCORY", nom: "PRIMA", loc: "ZONE 4, RUE PIERRE MARIE CURIE", tel: "27 21 35 49 71" },
+            { commune: "MARCORY", nom: "INOVIE COTE D’IVOIRE", loc: "ZONE 4, RUE LUMIERE PROLONGEE", tel: "27 21 53 29 01" },
+            { commune: "MARCORY", nom: "K.OPTIQUE", loc: "NON LOIN DE LA POLYCLINIQUE AV. TSF", tel: "26 21 59 97 97" },
+            { commune: "MARCORY", nom: "CENTRE MEDICAL OCULAR", loc: "AU SEIN DE LA CITE HIBISCUS", tel: "01 41 22 52 71" },
+            { commune: "MARCORY", nom: "VISTA VISION", loc: "ZONE 4 RUE DOCTEUR BLANCHARD", tel: "27 21 51 65 46" },
+            { commune: "MARCORY", nom: "CSERA (RADIOLOGIE)", loc: "ANOUMANBO", tel: "27 21 28 16 96" },
+            { commune: "MARCORY", nom: "DIAMOND OPTIQUE", loc: "SAINTE THERESE", tel: "07 08 55 90 56" },
+            // TREICHVILLE
+            { commune: "TREICHVILLE", nom: "CLINIQUE MEDICALE ROCHE", loc: "IMMEUBLE ROCHE, GARE DE BASSAM", tel: "27 21 25 62 76" },
+            { commune: "TREICHVILLE", nom: "CENTRE MEDICAL ODYSSEE", loc: "AVENUE 16", tel: "07 67 04 66 04" },
+            { commune: "TREICHVILLE", nom: "CENTRE MEDICAL AL IMAM AL KAZEM", loc: "RUE DU CANAL", tel: "27 21 26 75 75" },
+            { commune: "TREICHVILLE", nom: "CABINET OPHTALMOLOGIQUE PROXIMO", loc: "GARE DE BASSAM, CENTRE COMMERCIAL", tel: "27 21 35 41 34" },
+            { commune: "TREICHVILLE", nom: "CABINET DENTAIRE ST JEAN BOSCO", loc: "AV 16 RUE 38", tel: "27 21 24 73 39" },
+            { commune: "TREICHVILLE", nom: "ESPACE MEDICAL RAPHA SANTE", loc: "AV 1 NON LOIN DE LA MAIRIE", tel: "05 04 08 00 80" },
+            { commune: "TREICHVILLE", nom: "AIBEF", loc: "NON LOIN DE IVOSEP", tel: "01 41 15 58 58" },
+            { commune: "TREICHVILLE", nom: "CENTRE MEDICAL LA PLENITUDE", loc: "EN FACE DE LA MAIRIE", tel: "07 08 90 01 48" },
+            { commune: "TREICHVILLE", nom: "CENTRE MEDICAL DU ROND POINT", loc: "EN FACE DE LA PHARMACIE DU ROND POINT", tel: "07 08 05 35 11" },
+            { commune: "TREICHVILLE", nom: "CHU DE TREICHVILLE", loc: "TREICHVILLE", tel: "27 21 24 92 04" },
+            { commune: "TREICHVILLE", nom: "CENTRE MEDICAL SAINT SAUVEUR", loc: "AVENUE 21 RUE 44", tel: "07 07 93 15 64" },
+            // PLATEAU
+            { commune: "PLATEAU", nom: "POLYCLINIQUE INTERNATIONALE DE L’INDENIE", loc: "BOULEVARD DE L’INDENIE", tel: "27 20 30 97 00" },
+            { commune: "PLATEAU", nom: "ESPACE MEDICAL SAINT PAUL", loc: "IMMEUBLE FROMAGER, BLD ANGOULVANT", tel: "27 20 21 16 52" },
+            { commune: "PLATEAU", nom: "SGOM FRANCE OPTIQUE", loc: "RUE LE COEUR-AV FRANCHET D’ESPEREY", tel: "27-20-21-22-10" },
+            { commune: "PLATEAU", nom: "SAKHO OPTIQUE", loc: "17 AVENUE DELAFOSSE", tel: "27 20 22 88 68" },
+            { commune: "PLATEAU", nom: "CENTRE MEDICAL AIGLE ROYAL", loc: "IMMEUBLE DELAFOSSE 3ème ETAGE", tel: "07 97 65 17 04" },
+            { commune: "PLATEAU", nom: "OPTIC CENTER", loc: "IMMEUBLE DELAFOSSE FACE A KING BURGER", tel: "07 88 99 36 64" },
+            { commune: "PLATEAU", nom: "SAL OPTIC", loc: "EN FACE DE LA RADIO NOSTALGIE", tel: "05 06 16 71 95" },
+            // COCODY
+            { commune: "COCODY", nom: "POLYCLINIQUE PISAM", loc: "AVENUE JOSEPH BLOCK", tel: "27 22 48 31 31" },
+            { commune: "COCODY", nom: "POLYCLINIQUE DES 2 PLATEAUX", loc: "APRES LA FARANDOLE", tel: "27 22 41 33 34" },
+            { commune: "COCODY", nom: "CLINIQUE MEDICALE DE COCODY", loc: "EN FACE DE L’I.S.T.C", tel: "27 22 44 76 38" },
+            { commune: "COCODY", nom: "GROUPE MEDICAL ZOE CIAD", loc: "RIVIERA CIAD", tel: "01 02 77 47 42" },
+            { commune: "COCODY", nom: "CENTRE MEDICALE MILITAIRE", loc: "AKOUEDO NOUVEAU CAMP", tel: "07 08 55 55 02" },
+            { commune: "COCODY", nom: "CESAM", loc: "2 PLATEAUX DERRIERE BMW", tel: "27 21 41 11 40" },
+            { commune: "COCODY", nom: "CLINIQUE HOPE ROAD WILLIAMSVILLE", loc: "2 PLATEAUX DERRIERE LA PHARMACIE EMMANUEL", tel: "07 48 42 06 25" },
+            { commune: "COCODY", nom: "CENTRE MEDICAL DU TRIANGLE", loc: "PALMERAIE, APRES BARRAGE", tel: "27 22 45 98 80" },
+            { commune: "COCODY", nom: "CLINIQUE SAINT VIATEUR", loc: "CIDECI PRES DE L’ANCIEN CAMP AKOUEDO", tel: "27 22 47 26 47" },
+            { commune: "COCODY", nom: "CENTRE KINE MEDICAL", loc: "ANGRE 8è TRANCHE", tel: "27 22 01 45 57" },
+            { commune: "COCODY", nom: "CLINIQUE LE ROCHER", loc: "SOCOCE 2 PLATEAUX", tel: "27 22 41 62 24" },
+            { commune: "COCODY", nom: "OCEAN VISION", loc: "A 100 M DU CHÂTEAU DE COCODY", tel: "27 21 20 59 35" },
+            { commune: "COCODY", nom: "CHU DE COCODY", loc: "BOULEVARD DE L’UNIVERSITE", tel: "27 22 44 90 00" },
+            { commune: "COCODY", nom: "ORCHIDEE VISION", loc: "ANGRE 9è TRANCHE ROND POINT DJIBI", tel: "27 22 20 44 01" },
+            { commune: "COCODY", nom: "COMPLEXE SANITAIRE HENRIETTE KONAN BEDIE", loc: "BLOCKHAUSS", tel: "07 07 14 74 75" },
+            { commune: "COCODY", nom: "CENTRE MEDICAL DE LA RIVIERA BONOUMIN", loc: "NON LOIN DE DARAVILLE", tel: "07 58 11 61 82" },
+            { commune: "COCODY", nom: "CABINET MEDICAL LIVES PARTNERS", loc: "CITE LES TUILERIES", tel: "07 98 95 79 76" },
+            { commune: "COCODY", nom: "CLINIQUE LIFE", loc: "ANGRE GESTOCI", tel: "27-22-26-94-03" },
+            { commune: "COCODY", nom: "FASHION VISION SARL", loc: "M’BADON FACE AMBASSADE CHINE", tel: "07-57-13-37-81" },
+            { commune: "COCODY", nom: "VISIONET OPTIQUE", loc: "SAINT JEAN", tel: "01-01-03-64-73" },
+            { commune: "COCODY", nom: "CLINIQUE SAINT PIERRE LE GRAND", loc: "RIVIERA M’POUTO, SOL BENI", tel: "27 22 47 81 18" },
+            { commune: "COCODY", nom: "CHIC’OPTIC PRO", loc: "PLATEAU DOKUI DERRIERE SOCOCE", tel: "07 08 39 39 50" },
+            { commune: "COCODY", nom: "GROUPE MEDICAL BOZOUMA", loc: "RIVIERA BONOUMIN", tel: "07 77 34 77 12" },
+            { commune: "COCODY", nom: "OPTIC-KO", loc: "SOGEPHIA DERRIERE PHCIE MERMOZ", tel: "27 22 44 87 35" },
+            { commune: "COCODY", nom: "CONSULTATION EN LIGNE DOCAYA", loc: "WHATSAPP", tel: "07 58 58 39 37" },
+            { commune: "COCODY", nom: "CENTRE MEDICAL EDLONA", loc: "ANGRE 7EME TRANCHE", tel: "27 22 48 44 44" },
+            { commune: "COCODY", nom: "CLINIQUE SAINTE JUSTINE", loc: "ANGRE, PROGRAMME 6", tel: "27 22 25 63 53" },
+            { commune: "COCODY", nom: "HOTEL DE LA SANTE SAINTE-HENRIETTE", loc: "ANGRE 8ème TRANCHE", tel: "07 07 67 81 84" },
+            { commune: "COCODY", nom: "CLASS’OPTIQUE", loc: "2 PLATEAUX CARREFOUR MACACI", tel: "01 42 09 06 15" },
+            { commune: "COCODY", nom: "CENTRE MEDICAL ALTHEA", loc: "CARREFOUR FAYA APRES LE SUPER MARCHE", tel: "27 22 23 20 81" },
+            { commune: "COCODY", nom: "VISION 2000", loc: "CARREFOUR FAYA", tel: "27 21 33 41 95" },
+            { commune: "COCODY", nom: "CLINIQUE MEDICALE ALIM", loc: "2 PLATEAUX ANGRE", tel: "27 22 53 59 00" },
+            { commune: "COCODY", nom: "OPTIC CENTER", loc: "CARREFOUR BONOUMIN", tel: "07 88 99 36 64" },
+            { commune: "COCODY", nom: "OPTIC CENTER", loc: "ANGRE PETRO IVOIRE", tel: "07 88 99 36 64" },
+            { commune: "COCODY", nom: "CABINET DENTAIRE E'MES", loc: "ANGRE NOUVEAU CHU", tel: "05 75 75 75 30" },
+            { commune: "COCODY", nom: "CLINIQUE NOTRE DAME DE LA NATIVITE", loc: "ANGRE", tel: "07 47 00 78 38" },
+            { commune: "COCODY", nom: "LE CENTRE MEDICAL KANDICO", loc: "ANGRE 8ème TRANCHE", tel: "27 22 26 92 62" },
+            { commune: "COCODY", nom: "CLINIQUE SAINT FRANCOIS", loc: "PLATEAU FACE BCEAO", tel: "07 07 88 15 47" },
+            { commune: "COCODY", nom: "CIDSA", loc: "RIVIERA 2 PALMERAIE", tel: "07 08 40 72 93" },
+            { commune: "COCODY", nom: "BONNE VUE OPTIC", loc: "RIVIERA PALMERAI", tel: "07 07 51 18 23" },
+            { commune: "COCODY", nom: "CENTRE MEDICAL LA RETINE", loc: "CARREFOUR BONOUMIN", tel: "27 22 40 99 65" },
+            { commune: "COCODY", nom: "CENTRE MEDICAL PHILADELPHIE", loc: "RIVIERA PALMERAIE", tel: "27 22 20 19 62" },
+            { commune: "COCODY", nom: "CLINIQUE MEDICALE SPECIALISEE", loc: "2 PLATEAUX", tel: "22 22 41 72 96" },
+            { commune: "COCODY", nom: "CENTRE MEDICAL COEUR-SOMMEIL", loc: "ANGRE CHATEAU", tel: "07 09 32 79 77" },
+            // BINGERVILLE
+            { commune: "BINGERVILLE", nom: "HÔPITAL MERE-ENFANT", loc: "APRES E.M.P.T", tel: "27 22 51 15 00" },
+            { commune: "BINGERVILLE", nom: "HÔPITAL GENERAL DE BINGERVILLE", loc: "APRES L’ORPHELINAT", tel: "27 22 40 30 06" },
+            { commune: "BINGERVILLE", nom: "NOUVELLE CLINIQUE SAINTE DIANE", loc: "ABATTA", tel: "07 07 90 08 11" },
+            { commune: "BINGERVILLE", nom: "CENTRE MEDICAL CITE FEH KESSE", loc: "CITE FEH KESSE", tel: "07 77 48 86 88" },
+            { commune: "BINGERVILLE", nom: "SOCIETE MEDICALE LES PERLES", loc: "CARREFOUR ADAMA", tel: "01 40 39 48 66" },
+            { commune: "BINGERVILLE", nom: "CENTRE MEDICAL CHRIST EDEN", loc: "QUARTIER MARCHOUX", tel: "07 48 56 95 16" },
+            { commune: "BINGERVILLE", nom: "NOUVELLE CLINIQUE MARIE ELIANA", loc: "ROUTE DE M’BATTO BOUAKE", tel: "26 22 43 20 52" },
+            { commune: "BINGERVILLE", nom: "CENTRE MEDICAL RADIUS", loc: "CITE FEH KESSE", tel: "05 65 11 71 05" },
+            { commune: "BINGERVILLE", nom: "OPTIC CENTER", loc: "CARREFOUR FEH KESSE", tel: "07 88 99 36 64" },
+            { commune: "BINGERVILLE", nom: "CLINIQUE MERE DES ANGES", loc: "ROUTE D'ABATTA", tel: "05 86 85 96 71" },
+            // ADJAME
+            { commune: "ADJAME", nom: "CLINIQUE MEDICALE ADJAME LIBERTE", loc: "220 LOGEMENTS", tel: "07 07 07 32 70" },
+            { commune: "ADJAME", nom: "ESPACE SANTE DES TOURS", loc: "IMMEUBLE MISTRAL", tel: "05 05 71 97 88" },
+            { commune: "ADJAME", nom: "H-VISION SARL", loc: "220 LOGEMENTS", tel: "07 79 60 22 79" },
+            { commune: "ADJAME", nom: "CENTRE DE SANTE DE LA CRS-1", loc: "WILLIAMSVILLE", tel: "07 67 64 79 69" },
+            { commune: "ADJAME", nom: "GRAND ESPACE MEDICAL DU LAVAGE", loc: "WILLIAMSVILLE", tel: "27 35 97 48 22" },
+            // YOPOUGON
+            { commune: "YOPOUGON", nom: "CLINIQUE GABRIEL GARE", loc: "WASSAKARA", tel: "27 23 48 55 00" },
+            { commune: "YOPOUGON", nom: "HÔPITAL GENERAL (PMI)", loc: "SICOGI", tel: "27 23 45 43 90" },
+            { commune: "YOPOUGON", nom: "CLINIQUE MEICALE CHRYSALIDE", loc: "TOIT ROUGE", tel: "27 23 45 00 01" },
+            { commune: "YOPOUGON", nom: "CLINIQUE EL SHADDAÏ", loc: "VERS MOSSIKRO", tel: "01 03 44 51 49" },
+            { commune: "YOPOUGON", nom: "CLINIQUE MEDICALE MONT CARMEL", loc: "CARREFOUR OASIS", tel: "01 42 43 43 99" },
+            { commune: "YOPOUGON", nom: "CLINIQUE SAINTE JANNE ELEONORE", loc: "NIANGON NORD", tel: "27 23 50 72 05" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICAL LA MAIN DE DIEU", loc: "NON LOIN DE LA PMI", tel: "07 47 10 06 70" },
+            { commune: "YOPOUGON", nom: "CENTRE KINE MEDICAL", loc: "ANANERAIE", tel: "07 07 67 06 41" },
+            { commune: "YOPOUGON", nom: "CLINIQUE MEDICALE ST THEOPHILE", loc: "NIANGON SUD", tel: "05 05 91 99 50" },
+            { commune: "YOPOUGON", nom: "CLINIQUE OASIS SANTE", loc: "KENEYA", tel: "07 58 04 24 51" },
+            { commune: "YOPOUGON", nom: "OCEAN VISION", loc: "NOUVEAU QUARTIER", tel: "27 23 51 20 45" },
+            { commune: "YOPOUGON", nom: "GENIAL OPTIQUE", loc: "RUE PRINCESSE", tel: "07 47 37 55 21" },
+            { commune: "YOPOUGON", nom: "AIBEF", loc: "NON LOIN DE LA PMI", tel: "01 42 17 23 13" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICAL LE PHENIX", loc: "BANCO 2", tel: "07 07 61 57 26" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICO-SOCIAL AL RAFI", loc: "BANCO 2 8ième TRANCHE", tel: "07 58 56 50 17" },
+            { commune: "YOPOUGON", nom: "CLINIQUE BETHEL", loc: "TOIT ROUGE", tel: "05 05 04 29 36" },
+            { commune: "YOPOUGON", nom: "CENTRE LA VICTOIRE", loc: "NON LOIN PHARMACIE PHALENES", tel: "27 23 45 06 23" },
+            { commune: "YOPOUGON", nom: "CABINET GEM OPTIC", loc: "TOITS ROUGES", tel: "07 57 94 94 14" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICAL SIDECI", loc: "SIDECI", tel: "01 03 09 96 55" },
+            { commune: "YOPOUGON", nom: "CLINIQUE MEDICALE SUNEM", loc: "MAROC", tel: "01 42 12 00 79" },
+            { commune: "YOPOUGON", nom: "CLINIQUE MEDICALE SION", loc: "SAGUIDIBA", tel: "01 43 76 79 20" },
+            { commune: "YOPOUGON", nom: "PRESTIGE VISION", loc: "ANANERAIE", tel: "05 56 38 45 37" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICAL LE BELIER", loc: "ANANERAIE", tel: "05 56 38 45 37" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICAL LOGNON", loc: "NIANGON NORD", tel: "07 08 37 89 72" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICAL LE LOTUS", loc: "NIANGON SUD TERMINUS 27", tel: "07 77 09 22 43" },
+            { commune: "YOPOUGON", nom: "CLINIQUE REINE MARIE", loc: "NIANGON BASE CIE", tel: "27 23 51 51 41" },
+            { commune: "YOPOUGON", nom: "L’INFIRMERIE SAINTE PHILOMENE", loc: "NIANGON SUD", tel: "01 40 66 54 88" },
+            { commune: "YOPOUGON", nom: "VIE OPTIC", loc: "ANANERAIE", tel: "07 58 18 02 75" },
+            { commune: "YOPOUGON", nom: "NOUVELLE CLINIQUE GRANDE ETOILE", loc: "AZITO", tel: "01 24 31 83" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICAL AMOUR ET BIEN-ETRE", loc: "NIANGON SUD", tel: "07 59 96 51 06" },
+            { commune: "YOPOUGON", nom: "K.OPTIQUE", loc: "NIANGON SUD", tel: "07 49 40 23 71" },
+            { commune: "YOPOUGON", nom: "CANAL OPTIC", loc: "ACADEMIE", tel: "27 23 45 55 09" },
+            { commune: "YOPOUGON", nom: "CANADA OPTIQUE", loc: "SIPOREX", tel: "07 08 85 10 83" },
+            { commune: "YOPOUGON", nom: "OPTIC C", loc: "AXE SAPEUR POMPIER", tel: "01 02 01 86 86" },
+            { commune: "YOPOUGON", nom: "OPTIC CENTER", loc: "PORT BOUET 2", tel: "07 88 99 36 64" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICAL MISERICORDE DIEU", loc: "GESCO", tel: "07 49 11 41 10" },
+            { commune: "YOPOUGON", nom: "FSU COM YOPOUGON PORT BOUET II", loc: "PORT-BOET II", tel: "07 07 07 74 41" },
+            { commune: "YOPOUGON", nom: "CLINIQUE SAINT MATHIEU", loc: "NIANGON CITE VERTE", tel: "01 01 40 35 14" },
+            { commune: "YOPOUGON", nom: "CENTRE MEDICAL BELVI'", loc: "NIANGON", tel: "27 23 56 92 08" },
+            { commune: "YOPOUGON", nom: "OPTIQUE PRO", loc: "BEAGO", tel: "07 57 76 73 44" },
+            { commune: "YOPOUGON", nom: "NOUVELLE CLINIQUE SAINT SAUVEUR", loc: "ANANERAIE", tel: "27 23 40 78 05" },
+            { commune: "YOPOUGON", nom: "VICTOIRE OPTIQUE", loc: "KENEYA", tel: "07 08 07 71 51" },
+            // SONGON
+            { commune: "SONGON", nom: "CLINIQUE MERE MARIE MISERICODE", loc: "KM 17", tel: "05 04 92 93 94" },
+            { commune: "SONGON", nom: "CENTRE MEDICAL EXCELLENCE", loc: "SONGON", tel: "07 58 30 87 81" },
+            { commune: "SONGON", nom: "SOCIETE MEDICALE DE SONGON", loc: "NOUVELLE MAIRIE", tel: "01 43 76 79 20" },
+            { commune: "SONGON", nom: "CENTRE DE SANTE MIEN-MO", loc: "BIMBRESSO", tel: "07 57 81 25 34" },
+            // ATTECOUBE
+            { commune: "ATTECOUBE", nom: "CENTRE MEDICAL LES ELEIS", loc: "NON LOIN DE LA MAISON DU MAIRE", tel: "27 20 37 09 04" },
+            { commune: "ATTECOUBE", nom: "IDEAL VISION (IVSOL)", loc: "ABOBODOUME", tel: "07 59 49 49 13" },
+            { commune: "ATTECOUBE", nom: "CENTRE MEDICAL MERE DE GRACES", loc: "BANCO NORD", tel: "05 54 76 27 27" },
+            { commune: "ATTECOUBE", nom: "CENTRE MEDICAL ANNE NOUR", loc: "COLLEGE TCHIOULY", tel: "07 87 24 84 54" },
+            // ANYAMA
+            { commune: "ANYAMA", nom: "CENTRE MEDICAL AKADI", loc: "CARREFOUR CHATEAU", tel: "01 42 31 56 56" },
+            { commune: "ANYAMA", nom: "CLINIQUE MEDICAL H SANTE", loc: "DOTRE", tel: "07 89 20 22 34" },
+            { commune: "ANYAMA", nom: "CLINIQUE MEDICALE AFRIQUE FUTURE", loc: "BELLE VILLE", tel: "05 46 33 28 88" },
+            { commune: "ANYAMA", nom: "CENTRE MEDICAL SAINTE RITA", loc: "EBIMPE", tel: "07 07 01 21 25" },
+            { commune: "ANYAMA", nom: "ESPACE MEDICAL OASIS PLUS", loc: "ANYAMA", tel: "01 02 71 23 75" },
+            // ABOBO
+            { commune: "ABOBO", nom: "POLYCLINIQUE CENTRALE D'ABOBO", loc: "NON LOIN DE LA PHARMACIE D'ABOBOTE", tel: "27 24 00 00 49" },
+            { commune: "ABOBO", nom: "CENTRE DE SANTE EL RAPHA", loc: "BANCO", tel: "07 48 33 59 79" },
+            { commune: "ABOBO", nom: "CENTRE NOTRE DAME DE FATIMA", loc: "NON LOIN DE LA MAIRIE", tel: "01 02 09 44 39" },
+            { commune: "ABOBO", nom: "ESPACE MEDICAL ANADOR", loc: "CARREFOUR ESCALIER", tel: "07 08 62 15 92" },
+            { commune: "ABOBO", nom: "ONG ACID", loc: "AVOCATIER", tel: "27 21 77 33 60" },
+            { commune: "ABOBO", nom: "CENTRE MEDICAL SAINTE ELODIE", loc: "DOKUI", tel: "07 49 06 61 00" },
+            { commune: "ABOBO", nom: "CLINIQUE DE LA SANTE INFANTILE", loc: "N’DOTRE", tel: "07 09 98 27 27" },
+            { commune: "ABOBO", nom: "CSU COM ASSOMIN", loc: "PK 18", tel: "05 06 44 34 96" },
+            { commune: "ABOBO", nom: "CLINIQUE EDEN", loc: "BELLE VILLE", tel: "07 97 17 17 17" },
+            { commune: "ABOBO", nom: "GRANDE CLINIQUE LE SPHINX", loc: "N’DOTRE", tel: "07 08 34 37 63" },
+            { commune: "ABOBO", nom: "CLINIQUE SAINT RAPHAEL", loc: "QUARTIER BC", tel: "01 01 24 31 83" },
+            { commune: "ABOBO", nom: "CENTRE MEDICAL SOURCE DE VIE ZOE", loc: "QUARTIER BC", tel: "07 07 79 31 01" },
+            { commune: "ABOBO", nom: "MATERNITE BETHESDA DJIBI", loc: "DJIBI", tel: "07 08 91 95 92" },
+            { commune: "ABOBO", nom: "CENTRE MEDICA ABOBO GARE", loc: "ABOBO GARE", tel: "07 03 06 80 68" },
+            { commune: "ABOBO", nom: "CLINIQUE BIABOU", loc: "BIABOU", tel: "07 49 26 27 08" },
+            { commune: "ABOBO", nom: "CLINIQUE FATIMA DES 4 ETAGES", loc: "SOGEFIHA", tel: "01 70 90 97 25" },
+            { commune: "ABOBO", nom: "CM WANDAHO", loc: "AVOCATIER", tel: "07 07 82 04 42" },
+            { commune: "ABOBO", nom: "ELITE VISION", loc: "PHARMACIE DE LA ME", tel: "07 07 77 08 97" },
+            { commune: "ABOBO", nom: "CLINIQUE MASSA", loc: "PK18", tel: "27 24 30 14 93" },
+            { commune: "ABOBO", nom: "CENTRE MEDICAL SOINS DE VIE", loc: "N’DOTRE", tel: "07 48 15 70 99" },
+            { commune: "ABOBO", nom: "GRAND CENTRE MEDICAL D'AKEIKOI", loc: "AKEIKOI", tel: "27 20 21 91 30" },
+            { commune: "ABOBO", nom: "CLINIQUE MEDICALE CHRIST ROI", loc: "PK18", tel: "07 07 21 28 65" },
+            // BONOUA
+            { commune: "BONOUA", nom: "CENTRE MEDICAL SAINT JEAN", loc: "NON LOIN DU MARCHE", tel: "27 21 30 97 88" },
+            { commune: "BONOUA", nom: "CLINIQUE OASIS DU SINAÏ", loc: "KOUMASSI EXTENTION 2", tel: "01 40 20 62 95" },
+            { commune: "BONOUA", nom: "HOPITAL GENERAL DE BONOUA", loc: "EN FACE DE LA PHARMACIE", tel: "27 21 30 09 14" },
+            // BOUAKE
+            { commune: "BOUAKE", nom: "POLYCLINIQUE KENNEDY", loc: "QUARTIER KENNEDY", tel: "07 07 24 91 96" },
+            { commune: "BOUAKE", nom: "CLINIQUE SAINT JOSUE", loc: "NIMBO", tel: "01 42 20 20 07" },
+            { commune: "BOUAKE", nom: "CLINIQUE NANAN (CMENA)", loc: "N’GATTAKRO", tel: "27 31 63 35 63" },
+            { commune: "BOUAKE", nom: "CLINIQUE SAINT MARTIN", loc: "PRES DE L’ECOLE ADVANTISTE", tel: "07 09 06 40 81" },
+            { commune: "BOUAKE", nom: "CENTRE MEDICAL DES ANGES", loc: "RUE DES BANQUES", tel: "07 07 57 40 45" },
+            // ADIAKE
+            { commune: "ADIAKE", nom: "HÖPITAL GENERAL D’ADIAKE", loc: "ADIAKE", tel: "07 08 47 36 99" },
+            // GRAND BASSAM
+            { commune: "GRAND BASSAM", nom: "HOPITAL GENERAL", loc: "NON LOIN DU ROND POINT", tel: "07 08 90 04 77" },
+            { commune: "GRAND BASSAM", nom: "CLINIQUE OCEAN", loc: "CARREFOUR SACKO", tel: "05 74 66 18 94" },
+            { commune: "GRAND BASSAM", nom: "CLINIQUE MEDICALE ESTHER", loc: "DERRIERE NSA HOTEL", tel: "27 21 30 23 61" },
+            { commune: "GRAND BASSAM", nom: "CLINIQUE MEDICALE HOPE", loc: "BASSAM", tel: "07 07 61 69 51" },
+            { commune: "GRAND BASSAM", nom: "CENTRE MEDICAL HL.PAUL", loc: "MODESTE", tel: "01 40 80 27 35" },
+            { commune: "GRAND BASSAM", nom: "CLINIQUE MEDICALE SILOE", loc: "QUARTIER IMPERIAL", tel: "27 21 30 15 32" },
+            // YAMOUSSOUKRO
+            { commune: "YAMOUSSOUKRO", nom: "GROUPE MEDICAL SAINT SAUVEUR", loc: "QUARTIER HABITAT", tel: "07 08 42 42 23" },
+            { commune: "YAMOUSSOUKRO", nom: "CLINIQUE DES LACS", loc: "220 LGTS", tel: "07 08 58 60 64" },
+            { commune: "YAMOUSSOUKRO", nom: "CABINET OPHTALMOLOGIE", loc: "DIOULAKRO", tel: "27 30 64 27 95" },
+            { commune: "YAMOUSSOUKRO", nom: "MAJ OPTICIEN", loc: "DIOULAKRO", tel: "27 30 64 07 30" },
+            { commune: "YAMOUSSOUKRO", nom: "CENTRE MEDICAL EBENEZER", loc: "MOROFE EBENEZER", tel: "26 24 33 92 53" },
+            { commune: "YAMOUSSOUKRO", nom: "LABORATOIRE DU CENTRE", loc: "PHARMACIE YAMOUSSOUKRO", tel: "07 98 51 64 23" },
+            { commune: "YAMOUSSOUKRO", nom: "CLEAN VISION", loc: "220 LOGEMENTS", tel: "27 30 64 26 85" },
+            { commune: "YAMOUSSOUKRO", nom: "CLINIQUE MEDICALE MERCY", loc: "220 LGTS", tel: "07 49 68 80 86" },
+            // SAN PEDRO
+            { commune: "SAN PEDRO", nom: "CENTRE MEDICAL LA VIE", loc: "QUARTIER ZIMBABWE", tel: "07 47 79 06 29" },
+            { commune: "SAN PEDRO", nom: "DESIGN OPTIC", loc: "MARCHE DE LA CITE", tel: "05 05 48 72 68" },
+            { commune: "SAN PEDRO", nom: "CLINIQUE MEDICALE BEGNANKO", loc: "LAC SONOUKO", tel: "07 48 57 96 45" },
+            { commune: "SAN PEDRO", nom: "CLINIQUE L'EMMANUEL", loc: "QUARTIER BARDOT", tel: "27 34 71 81 61" },
+            // AUTRES VILLES
+            { commune: "BOUAFLE", nom: "CENTRE MEDICAL BETHEL", loc: "BOUAFLE", tel: "05 46 91 97 17" },
+            { commune: "ABENGOUROU", nom: "CENTRE MEDICAL INDENIE DJUABLIN", loc: "ABENGOUROU", tel: "01 01 61 60 50" },
+            { commune: "ADZOPE", nom: "CLINIQUE OKA", loc: "QUARTIER TP", tel: "01 02 02 45 87" },
+            { commune: "ADZOPE", nom: "CLINIQUE SAINT JOSEPH", loc: "QUARTIER SOGEPHIA", tel: "27 35 95 08 47" },
+            { commune: "ADZOPE", nom: "CHR D’ADZOPE", loc: "ADZOPE", tel: "07 07 05 82 62" },
+            { commune: "AGBOVILLE", nom: "AGNEBY ESPACE MEDICAL", loc: "SOGEFIA", tel: "07 08 98 06 67" },
+            { commune: "HIRE", nom: "CLINIQUE LA GRANDE PROVIDENCE", loc: "HIRE", tel: "07-59-81-14-26" },
+            { commune: "HIRE", nom: "CLINIQUE SUNEM", loc: "HIRE", tel: "01 51 06 14 39" },
+            { commune: "DIVO", nom: "CLINIQUE AHISSA", loc: "KONANKRO", tel: "07 07 90 71 99" },
+            { commune: "DIVO", nom: "CENTRE MEDICAL MONICA", loc: "GREMIAN", tel: "07 07 81 25 62" },
+            { commune: "DALOA", nom: "CMS POLYVALENT", loc: "HUBERSON", tel: "27 32 78 72 91" },
+            { commune: "DALOA", nom: "REEL OPTIC", loc: "GBEULIVILLE", tel: "27 35 96 12 89" },
+            { commune: "DALOA", nom: "CENTRE MEDICAL SAINT JEAN", loc: "TAZIBOUO", tel: "07 47 07 26 33" },
+            { commune: "DALOA", nom: "CLINIQUE L'ANTILOPE", loc: "TAZIBOUO", tel: "27 32 78 02 52" },
+            { commune: "DUEKOUE", nom: "CLINIQUE MEDICALE DE DUEKOUE", loc: "DUEKOUE", tel: "07 07 89 42 90" },
+            { commune: "DUEKOUE", nom: "CLINIQUE SAINTE ANNE MARIE", loc: "DUEKOUE", tel: "07 57 81 18 87" },
+            { commune: "SINFRA", nom: "HOPITAL GENERAL DE SINFRA", loc: "SINFRA", tel: "07 08 45 55 63" },
+            { commune: "GAGNOA", nom: "CLINIQUE MEDICALE LE GHERY", loc: "SAINT-GEORGES", tel: "27 24 31 80 08" },
+            { commune: "TOUBA", nom: "CHR DE TOUBA", loc: "TOUBA", tel: "27 33 70 71 71" },
+            { commune: "FERKESSEDOUGOU", nom: "HOPITAL GENERAL", loc: "FERKESSEDOUGOU", tel: "27 36 86 81 35" },
+            { commune: "KORHOGO", nom: "HOPITAL GENERAL DE M’BENGUE", loc: "PORO", tel: "01 51 96 81 31" },
+            { commune: "KORHOGO", nom: "CHR DE KORHOGO", loc: "KORHOGO", tel: "01 02 58 83 85" },
+            { commune: "KORHOGO", nom: "POLYCLINIQUE LA SISANGUE", loc: "KORHOGO", tel: "25 36 86 30 14" },
+            { commune: "TABOU", nom: "CLINIQUE LES OLIVIERS", loc: "TABOU", tel: "27 34 76 07 97" },
+            { commune: "TABOU", nom: "HOPITAL GENERAL", loc: "QUARTIER COMMERCE", tel: "07 77 79 63 35" },
+            { commune: "ODIENNE", nom: "GRAND CENTRE MEDICAL FRONTIERES", loc: "ODIENNE", tel: "07 08 47 15 64" },
+            { commune: "ISSIA", nom: "ESPACE MEDICAL KAYAF", loc: "ISSIA", tel: "07 77 52 42 48" },
+            { commune: "BONON", nom: "CLINIQUE LA GRACE DIVINE", loc: "BONON", tel: "07 07 18 05 08" },
+            { commune: "GUIGLO", nom: "CENTRE MEDICAL ONG ACID", loc: "GUIGLO", tel: "07 57 44 26 95" },
+            { commune: "MEAGUI", nom: "CLINIQUE SAINT RAPHAEL", loc: "MEAGUI", tel: "27 32 79 44 19" },
+            { commune: "ABOISSO", nom: "CLINIQUE SOURCE DE VIE", loc: "NON LOIN PHAR SOKOURA", tel: "01 02 42 91 26" },
+            { commune: "MAN", nom: "CENTRE MEDICAL LA PROVIDENCE", loc: "QUARTIER SARI", tel: "27 24 37 79 65" },
+            { commune: "GRAND-LAHOU", nom: "HOPITAL GENERAL", loc: "GRAND-LAHOU", tel: "01 40 24 50 30" },
+            { commune: "DABOU", nom: "HOPITAL GENERAL", loc: "DABOU", tel: "07 07 89 15 01" },
+            { commune: "DABOU", nom: "CENTRE MEDICAL SAREPTA", loc: "ANCIENNE MAIRIE", tel: "27 23 57 26 48" },
+            { commune: "DABOU", nom: "HOPITAL METHODISTE", loc: "DABOU", tel: "01 01 91 53 07" },
+            { commune: "GUEYO", nom: "CENTRE MEDICAL LE PRINCIPAL", loc: "GUEYO", tel: "07 57 15 33 04" }
+        ];
+
+        // Function to render table
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            const noResults = document.getElementById('noResults');
+            tbody.innerHTML = '';
+
+            if (data.length === 0) {
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${item.commune}</strong></td>
+                    <td class="partner-name">${item.nom}</td>
+                    <td class="partner-location">${item.loc}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Filter function
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+
+            const filteredData = prestataires.filter(item => {
+                return item.commune.toUpperCase().includes(filter) ||
+                    item.nom.toUpperCase().includes(filter) ||
+                    item.loc.toUpperCase().includes(filter);
+            });
+
+            renderTable(filteredData);
+        }
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable(prestataires);
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer" id="propos">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="color:white; margin-bottom:1rem; font-size:1.5rem;">Wayvance</h3>
+                    <p style="color:#aaa; line-height:1.6;">
+                        Rendre l'assurance accessible à tous les Ivoiriens. Solutions flexibles pour les professionnels
+                        et les familles.
+                    </p>
+                </div>
+
+                <div>
+                    <h4>Nos Services</h4>
+                    <ul>
+                        <li><a href="index.html#produits">Assurance Santé</a></li>
+                        <li><a href="index.html#produits">Assurance Auto</a></li>
+                        <li><a href="index.html#simulateur">Simulateur de Prime</a></li>
+                        <li><a href="index.html#contact">Déclaration Sinistre</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Informations</h4>
+                    <ul>
+                        <li><a href="apropos.html">Qui sommes-nous ?</a></li>
+                        <li><a href="#">Conditions Générales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Suivez-nous</h4>
+                    <p style="margin-bottom:1rem; color:#aaa;">Rejoignez notre communauté</p>
+                    <div style="display:flex; gap:1rem;">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Wayvance Assurances. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+
+
+
+</body>
+
+</html>

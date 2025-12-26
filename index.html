@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayvance Assurances | Votre Protection, Notre Engagement</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Assurances Santé et Automobile adaptées aux réalités ivoiriennes. Solutions flexibles pour travailleurs indépendants, familles et professionnels.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <a href="#" class="logo">
+                    <img src="images/logo.jpg" alt="Wayvance Assurances Logo">
+                </a>
+
+                <nav>
+                    <div class="hamburger">☰</div>
+                    <ul class="nav-menu">
+                        <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                        <li><a href="#produits" class="nav-link">Nos Offres</a></li>
+                        <li><a href="#simulateur" class="nav-link">Nos Tarifs</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle">Réseau de Soins</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="pharmacies.html" class="dropdown-item">PHARMACIES PARTENAIRES</a></li>
+                                <li><a href="prestataires.html" class="dropdown-item">PRESTATAIRES PARTENAIRES</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="apropos.html" class="nav-link">À Propos</a></li>
+                        <li><a href="#contact" class="btn btn-contact">Nous Contacter</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header-contact-bar">
+                <div class="phone-info">
+                    <span class="contact-icon">📞</span>
+                    <span>(+225) 07 78 94 99 09</span>
+                </div>
+                <div class="location-info">
+                    <span class="contact-icon">📍</span>
+                    <span>ABIDJAN-Treichville</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Votre Protection, <br> <span style="color: var(--color-secondary);">Notre Engagement</span></h1>
+                <p>Assurances Santé & Automobile adaptées aux professionnels ivoiriens. Protections flexibles pour vous
+                    et votre famille.</p>
+                <div class="hero-buttons">
+                    <a href="#simulateur" class="btn btn-primary">Obtenir un Devis Gratuit</a>
+                    <a href="#produits" class="btn btn-outline">Découvrir nos Offres</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="container">
+        <div class="trust-bar">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <h3>15 ans</h3>
+                    <p>d'expérience</p>
+                </div>
+                <div class="trust-item">
+                    <h3>10,000+</h3>
+                    <p>clients satisfaits</p>
+                </div>
+                <div class="trust-item">
+                    <h3>Flexible</h3>
+                    <p>Paiement échelonné</p>
+                </div>
+                <div class="trust-item">
+                    <h3>24/7</h3>
+                    <p>Service client</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section id="produits" class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Solutions d'Assurance</h2>
+                <p>Des couvertures complètes et flexibles conçues pour répondre à vos besoins spécifiques.</p>
+            </div>
+
+            <div class="products-grid">
+                <!-- Santé Card -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- Placeholder or generated image for Family/Health -->
+                        <div
+                            style="width:100%; height:100%; background: linear-gradient(45deg, #1a2e4a, #2c4466); display: flex; align-items:center; justify-content:center; color:white;">
+                            <img src="images/sante1.jpg" alt="Famille Health"
+                                style="opacity: 0.8; object-fit: cover; object-position: top;">
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3><img src="images/logo_sante.jpg" alt="Logo Santé"
+                                style="height: 1.8rem; width: auto; margin-right: 10px; vertical-align: middle;">
+                            Assurance Santé</h3>
+                        <p class="product-subtitle">Optimisée pour les travailleurs indépendants</p>
+                        <ul class="benefits-list">
+                            <li>Conçue pour commerçants, artisans & freelances</li>
+                            <li>1 adhésion couvre 5 membres de la famille</li>
+                            <li>Paiement mensuel flexible</li>
+                            <li>Formules 80% ou 100% au choix</li>
+                            <li>Souscription simple en 48h</li>
+                        </ul>
+                        <a href="javascript:void(0)" class="btn btn-primary" onclick="openModal('modal-sante')">En
+                            savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- Auto Card -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- Placeholder or generated image for Auto -->
+                        <!-- Carousel for Auto -->
+                        <div class="carousel-container" id="auto-carousel">
+                            <div class="carousel-slide active"><img src="images/vehicule1.jpg" alt="Véhicule 1"></div>
+                            <div class="carousel-slide"><img src="images/vehicule2.jpg" alt="Véhicule 2"></div>
+                            <div class="carousel-slide"><img src="images/vehicule3.jpg" alt="Véhicule 3"></div>
+                            <div class="carousel-slide"><img src="images/vehicule4.jpg" alt="Véhicule 4"></div>
+                            <div class="carousel-slide"><img src="images/vehicule5.jpg" alt="Véhicule 5"></div>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>🚗 Assurance Automobile</h3>
+                        <p class="product-subtitle">Protection complète tous véhicules</p>
+                        <ul class="benefits-list">
+                            <li>Couverture Tiers Simple, Complet ou Tous Risques</li>
+                            <li>Pour Autos, Motos, Camions & Tricycles</li>
+                            <li>Dépannage réactif 24/7 inclus</li>
+                            <li>Assistance personnalisée sur mesure</li>
+                            <li>Agents présents sur le terrain</li>
+                        </ul>
+                        <a href="javascript:void(0)" class="btn btn-primary" onclick="openModal('modal-auto')">En savoir
+                            plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Foire Aux Questions (FAQ)</h2>
+                <p>Retrouvez les réponses à vos questions les plus fréquentes.</p>
+            </div>
+
+            <div class="faq-container">
+                <!-- Assurance Santé -->
+                <div class="faq-category">
+                    <h3>Assurance Santé</h3>
+                    <div class="faq-item">
+                        <button class="faq-question">Qui peut souscrire à l'assurance santé Wayvance ?</button>
+                        <div class="faq-answer">
+                            <p>Tout travailleur indépendant, commerçant, artisan, entrepreneur ou profession libérale
+                                résidant en Côte d'Ivoire peut souscrire. Aucun bulletin de salaire n'est requis. Il
+                                suffit d'avoir entre 18 et 65 ans et de fournir une pièce d'identité valide, un
+                                justificatif de domicile et un certificat médical de base.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Combien de personnes puis-je couvrir avec une seule adhésion
+                            ?</button>
+                        <div class="faq-answer">
+                            <p>Une adhésion Wayvance Santé couvre automatiquement le souscripteur et jusqu'à 4 ayants
+                                droit (conjoint et enfants), soit 5 personnes au total. Les enfants peuvent être
+                                couverts jusqu'à 21 ans (25 ans s'ils sont étudiants).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Quelle est la différence entre la formule 80% et 100% ?</button>
+                        <div class="faq-answer">
+                            <p>La formule Essentielle (80%) rembourse 80% des frais médicaux (consultations,
+                                médicaments, examens, hospitalisations) après déduction du ticket modérateur. La formule
+                                Premium (100%) couvre l'intégralité des frais sans reste à charge, incluant également
+                                des prestations supplémentaires comme l'optique, les soins dentaires et les médecines
+                                douces.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Y a-t-il un délai de carence avant de bénéficier des remboursements
+                            ?</button>
+                        <div class="faq-answer">
+                            <p>Pour les consultations courantes et médicaments, vous êtes couvert dès le 1er jour. Un
+                                délai de carence de 3 mois s'applique pour les hospitalisations et 6 mois pour la
+                                maternité. Les accidents sont couverts immédiatement sans délai de carence.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assurance Automobile -->
+                <div class="faq-category">
+                    <h3>Assurance Automobile</h3>
+                    <div class="faq-item">
+                        <button class="faq-question">Quels types de véhicules peuvent être assurés chez Wayvance
+                            ?</button>
+                        <div class="faq-answer">
+                            <p>Nous assurons tous types de véhicules : automobiles (particulières et commerciales),
+                                motos, tricycles, camions, camionnettes et remorques. Chaque catégorie bénéficie de
+                                tarifs adaptés et de garanties spécifiques.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Comment fonctionne votre service de dépannage ?</button>
+                        <div class="faq-answer">
+                            <p>Notre service de dépannage est disponible 24h/24 et 7j/7. En cas de panne ou d'accident,
+                                appelez notre numéro d'urgence. Nous envoyons un dépanneur dans un rayon de 50 km autour
+                                d'Abidjan (généralement dans les 30-45 minutes). Le remorquage vers le garage de votre
+                                choix est inclus dans les formules Tiers Complet et Tous Risques.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Puis-je changer de formule (de Tiers Simple à Tous Risques par
+                            exemple) ?</button>
+                        <div class="faq-answer">
+                            <p>Oui, vous pouvez upgrader votre formule à tout moment. La nouvelle garantie prend effet
+                                dès le paiement du complément de prime. En revanche, le passage d'une formule supérieure
+                                à une formule inférieure n'est possible qu'à la date d'échéance annuelle de votre
+                                contrat.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paiement et Contrat -->
+                <div class="faq-category">
+                    <h3>Paiement et Contrat</h3>
+                    <div class="faq-item">
+                        <button class="faq-question">Quels sont les modes de paiement acceptés ?</button>
+                        <div class="faq-answer">
+                            <p>Nous acceptons les paiements en espèces dans nos agences, par chèque, virement bancaire,
+                                et via les services de Mobile Money (Orange Money, MTN Money, Moov Money). Pour les
+                                cotisations récurrentes, vous pouvez mettre en place un prélèvement automatique mensuel.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Que se passe-t-il si je ne peux pas payer une échéance à temps
+                            ?</button>
+                        <div class="faq-answer">
+                            <p>Nous comprenons que les imprévus arrivent. Contactez-nous dès que possible : nous pouvons
+                                vous accorder un délai de grâce de 15 à 30 jours selon votre historique de paiement, ou
+                                proposer un rééchelonnement de votre dette. Notre objectif est de maintenir votre
+                                couverture, pas de la suspendre à la moindre difficulté.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Comment résilier mon contrat si nécessaire ?</button>
+                        <div class="faq-answer">
+                            <p>Vous pouvez résilier votre contrat à la date d'échéance annuelle en nous envoyant une
+                                lettre recommandée 2 mois avant. Depuis la loi Hamon ivoirienne, vous pouvez également
+                                résilier à tout moment après la première année d'engagement pour l'assurance auto. Pour
+                                l'assurance santé, un préavis de 3 mois est requis sauf en cas de déménagement à
+                                l'étranger ou perte d'activité professionnelle.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Us -->
+        <section id="avantages" class="why-us-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Pourquoi Choisir Wayvance ?</h2>
+                    <p>Nous repensons l'assurance pour la rendre plus humaine et accessible.</p>
+                </div>
+
+                <div class="value-cards-grid">
+                    <div class="value-card">
+                        <div class="value-card-header">
+                            <span class="icon">💳</span>
+                            <h4>Flexibilité de Paiement</h4>
+                        </div>
+                        <p>Des facilités de paiement échelonné adaptées à votre trésorerie et vos rentrées d'argent.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-card-header">
+                            <span class="icon">💰</span>
+                            <h4>Économie sur dépenses de santé</h4>
+                        </div>
+                        <p>Réduisez significativement vos frais médicaux grâce à notre réseau de partenaires et nos
+                            formules optimisées.</p>
+                    </div>
+
+
+                    <div class="value-card">
+                        <div class="value-card-header">
+                            <span class="icon">👨‍👩‍👧‍👦</span>
+                            <h4>Couverture Familiale</h4>
+                        </div>
+                        <p>Protégez toute votre famille (conjoint + enfants) avec une seule adhésion économique.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-card-header">
+                            <span class="icon">⭐</span>
+                            <h4>Meilleure qualité des soins</h4>
+                        </div>
+                        <p>Accédez à un réseau sélectionné de cliniques, hôpitaux et pharmacies partenaires de qualité à
+                            Abidjan et en Côte d'Ivoire.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulator Section -->
+        <section id="simulateur" class="simulator-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Nos Tarifs</h2>
+                    <p>Estimez votre cotisation en quelques clics. Simple, rapide et transparent.</p>
+                </div>
+
+                <div class="simulator-container">
+                    <div class="simulator-tabs">
+                        <button class="tab-btn active" data-tab="sante">🏥 Assurance Santé</button>
+                        <button class="tab-btn" data-tab="auto">🚗 Assurance Auto</button>
+                    </div>
+
+                    <!-- Tab Santé -->
+                    <div class="tab-content active" id="sante">
+                        <form id="form-sante">
+                            <div class="form-group">
+                                <label>Nombre de bénéficiaires (Vous + Famille)</label>
+                                <div class="range-container">
+                                    <input type="range" id="beneficiaires" min="1" max="10" value="1"
+                                        oninput="document.getElementById('benef-val').innerText = this.value">
+                                    <span id="benef-val"
+                                        style="font-weight: bold; font-size: 1.2rem; color: var(--color-primary);">1</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Niveau de Couverture</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="couverture" value="80" checked>
+                                        Formule Essentielle (80%)
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="couverture" value="100">
+                                        Formule Premium (100%)
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Âge du souscripteur</label>
+                                <select class="form-control" id="age-souscripteur">
+                                    <option value="18">18 ans</option>
+                                    <option value="19">19 ans</option>
+                                    <option value="20">20 ans</option>
+                                    <option value="21">21 ans</option>
+                                    <option value="22">22 ans</option>
+                                    <option value="23">23 ans</option>
+                                    <option value="24">24 ans</option>
+                                    <option value="25">25 ans</option>
+                                    <option value="26">26 ans</option>
+                                    <option value="27">27 ans</option>
+                                    <option value="28">28 ans</option>
+                                    <option value="29">29 ans</option>
+                                    <option value="30">30 ans</option>
+                                    <option value="31">31 ans</option>
+                                    <option value="32">32 ans</option>
+                                    <option value="33">33 ans</option>
+                                    <option value="34">34 ans</option>
+                                    <option value="35">35 ans</option>
+                                    <option value="36">36 ans</option>
+                                    <option value="37">37 ans</option>
+                                    <option value="38">38 ans</option>
+                                    <option value="39">39 ans</option>
+                                    <option value="40">40 ans</option>
+                                    <option value="41">41 ans</option>
+                                    <option value="42">42 ans</option>
+                                    <option value="43">43 ans</option>
+                                    <option value="44">44 ans</option>
+                                    <option value="45">45 ans</option>
+                                    <option value="46">46 ans</option>
+                                    <option value="47">47 ans</option>
+                                    <option value="48">48 ans</option>
+                                    <option value="49">49 ans</option>
+                                    <option value="50">50 ans</option>
+                                    <option value="51">51 ans</option>
+                                    <option value="52">52 ans</option>
+                                    <option value="53">53 ans</option>
+                                    <option value="54">54 ans</option>
+                                    <option value="55">55 ans</option>
+                                    <option value="56">56 ans</option>
+                                    <option value="57">57 ans</option>
+                                    <option value="58">58 ans</option>
+                                    <option value="59">59 ans</option>
+                                    <option value="60">60 ans</option>
+                                    <option value="61">61 ans</option>
+                                    <option value="62">62 ans</option>
+                                    <option value="63">63 ans</option>
+                                    <option value="64">64 ans</option>
+                                    <option value="65">65 ans</option>
+                                    <option value="66">66 ans</option>
+                                    <option value="67">67 ans</option>
+                                    <option value="68">68 ans</option>
+                                    <option value="69">69 ans</option>
+                                    <option value="70">70 ans</option>
+                                </select>
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="calculerSante()">Calculer ma
+                                Prime</button>
+
+                            <div class="simulation-result" id="result-sante" style="display:none;">
+                                <h4>Estimation Mensuelle</h4>
+                                <div class="price-display"><span id="prix-sante">0</span> FCFA<span
+                                        class="price-period">/mois</span></div>
+                                <p>Soit <span id="prix-sante-an">0</span> FCFA/an</p>
+                                <a href="#contact" class="btn btn-outline"
+                                    style="background-color: var(--color-primary); margin-top: 1rem;">Souscrire
+                                    Maintenant</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Tab Auto -->
+                    <div class="tab-content" id="auto">
+                        <form id="form-auto">
+                            <!-- Ligne 1 : Profil & Type -->
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label>Profil Assuré</label>
+                                    <select class="form-control" id="profil-assure">
+                                        <option value="particulier">Particulier</option>
+                                        <option value="societe">Société</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Type de Véhicule</label>
+                                    <select class="form-control" id="type-vehicule" onchange="toggleChargeUtile()">
+                                        <option value="tourisme">Véhicule Personnel</option>
+                                        <option value="4x4">SUV / 4x4</option>
+                                        <option value="camion">Camion</option>
+                                        <option value="camionnette">Camionnette</option>
+                                        <option value="car">Car / Autocar</option>
+                                        <option value="remorque">Remorque</option>
+                                        <option value="moto">Moto</option>
+                                        <option value="tricycle">Tricycle</option>
+                                        <option value="engin">Engin de Chantier</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Ligne 2 : Usage & Energie -->
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label>Usage du Véhicule</label>
+                                    <select class="form-control" id="usage-vehicule">
+                                        <option value="compte_propre">Transport pour compte propre</option>
+                                        <option value="location">Location / Transport public</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Énergie</label>
+                                    <select class="form-control" id="energie">
+                                        <option value="essence">Essence</option>
+                                        <option value="diesel">Diesel</option>
+                                        <option value="electrique">Électrique</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Ligne 3 : Date & Places -->
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label>Date de mise en circulation</label>
+                                    <input type="date" class="form-control" id="date-circulation">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombre de places</label>
+                                    <input type="number" class="form-control" id="places" min="1" value="5">
+                                </div>
+                            </div>
+
+                            <!-- Ligne 4 : Charge Utile & Puissance (Optionnel) -->
+                            <div class="form-group" id="group-charge-utile" style="display:none;">
+                                <label>Charge Utile</label>
+                                <select class="form-control" id="charge-utile">
+                                    <option value="1-2">De 1 à 2 Tonnes</option>
+                                    <option value="2-3">De 2 à 3 Tonnes</option>
+                                    <option value="3-4">De 3 à 4 Tonnes</option>
+                                    <option value="4-5">De 4 à 5 Tonnes</option>
+                                    <option value="5-6">De 5 à 6 Tonnes</option>
+                                    <option value="6-7">De 6 à 7 Tonnes</option>
+                                    <option value="7-8">De 7 à 8 Tonnes</option>
+                                    <option value="8-9">De 8 à 9 Tonnes</option>
+                                    <option value="9-10">De 9 à 10 Tonnes</option>
+                                    <option value="10-11">De 10 à 11 Tonnes</option>
+                                    <option value="11-12">De 11 à 12 Tonnes</option>
+                                    <option value="12-13">De 12 à 13 Tonnes</option>
+                                    <option value="13-14">De 13 à 14 Tonnes</option>
+                                    <option value="14-15">De 14 à 15 Tonnes</option>
+                                    <option value="plus-15">Plus de 15 Tonnes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Puissance Fiscale (CV)</label>
+                                <select class="form-control" id="puissance">
+                                    <option value="small">1 - 4 CV</option>
+                                    <option value="medium">5 - 8 CV</option>
+                                    <option value="large">9+ CV</option>
+                                </select>
+                            </div>
+
+                            <!-- Ligne 5 : Durée & Formule -->
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label>Durée du Contrat</label>
+                                    <select class="form-control" id="duree-contrat">
+                                        <option value="1">1 Mois</option>
+                                        <option value="3">3 Mois</option>
+                                        <option value="6">6 Mois</option>
+                                        <option value="12" selected>Annuelle</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Formule Souhaitée</label>
+                                    <select class="form-control" id="formule-auto" onchange="toggleValeurVehicule()">
+                                        <option value="tiers">Tiers Simple (Obligatoire)</option>
+                                        <option value="complet">Tiers Complet (+ Vol/Incendie)</option>
+                                        <option value="tousrisques">Tous Risques</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="group-valeur-vehicule" style="display:none;">
+                                <label>Valeur du Véhicule (FCFA)</label>
+                                <input type="number" class="form-control" id="valeur-vehicule" placeholder="Ex: 5000000"
+                                    min="0">
+                                <small style="color: #888;">Obligatoire pour la formule Tous Risques</small>
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="calculerAuto()">Calculer ma
+                                Prime</button>
+
+                            <div class="simulation-result" id="result-auto" style="display:none;">
+                                <h4>Estimation</h4>
+                                <div class="price-display"><span id="prix-auto">0</span> FCFA</div>
+                                <p id="message-duree">Pour la durée sélectionnée</p>
+                                <a href="#contact" class="btn btn-outline"
+                                    style="background-color: var(--color-primary); margin-top: 1rem;">Demander un
+                                    Devis</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Testimonials -->
+        <section id="temoignages" class="testimonials-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Ce que disent nos clients</h2>
+                    <p>La satisfaction de nos assurés est notre meilleure publicité.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="client-info">
+                            <div class="client-avatar"
+                                style="background-color: #ffccbc; display:flex; align-items:center; justify-content:center; font-weight:bold; color:#d84315;">
+                                AK</div>
+                            <div>
+                                <h4>Adjoua Koffi</h4>
+                                <p class="text-sm text-muted">Commerçante, Adjamé</p>
+                                <div class="stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="quote">"J'ai longtemps cherché une assurance santé pour ma famille sans succès. Avec
+                            Wayvance, j'ai pu assurer mes 4 enfants et mon mari. Le paiement mensuel arrange vraiment
+                            mon
+                            commerce."</p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="client-info">
+                            <div class="client-avatar"
+                                style="background-color: #bbdefb; display:flex; align-items:center; justify-content:center; font-weight:bold; color:#1565c0;">
+                                MT</div>
+                            <div>
+                                <h4>Mamadou Traoré</h4>
+                                <p class="text-sm text-muted">Chauffeur de taxi, Yopougon</p>
+                                <div class="stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="quote">"Mon taxi, c'est mon gagne-pain. Quand j'ai eu un accident, Wayvance a tout
+                            pris en
+                            charge rapidement. J'ai eu un véhicule de remplacement le lendemain. Service impeccable !"
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="client-info">
+                            <div class="client-avatar"
+                                style="background-color: #c8e6c9; display:flex; align-items:center; justify-content:center; font-weight:bold; color:#2e7d32;">
+                                KN</div>
+                            <div>
+                                <h4>Kouassi N'Guessan</h4>
+                                <p class="text-sm text-muted">Gérant de boutique, Cocody</p>
+                                <div class="stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="quote">"Ce qui m'a convaincu, c'est la transparence. Pas de petites lignes cachées.
+                            Ils
+                            m'ont expliqué clairement ce qui est couvert. Je recommande à tous mes amis entrepreneurs."
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="client-info">
+                            <div class="client-avatar"
+                                style="background-color: #e1bee7; display:flex; align-items:center; justify-content:center; font-weight:bold; color:#6a1b9a;">
+                                FB</div>
+                            <div>
+                                <h4>Fatou Bamba</h4>
+                                <p class="text-sm text-muted">Coiffeuse, Treichville</p>
+                                <div class="stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="quote">"L'assurance santé Wayvance m'a sauvée. Mon fils est tombé malade et Wayvance a
+                            tout remboursé à 100% avec ma formule Premium. Je suis reconnaissante à vie."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Team Section -->
+        <section id="equipe" class="team-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Notre Équipe</h2>
+                    <p>Des experts passionnés à votre service.</p>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-photo"><img src="images/equipe.jpg" alt="Directeur"></div>
+                        <div class="team-info">
+                            <h4>Jean-Marc Kouassi</h4>
+                            <p class="team-role">Directeur Général</p>
+                            <p>15 ans d'expérience en assurance. <br>Visionnaire et engagé.</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo"><img src="images/equipe.jpg" alt="Responsable Santé"></div>
+                        <div class="team-info">
+                            <h4>Aïcha Koné</h4>
+                            <p class="team-role">Responsable Santé & Famille</p>
+                            <p>Votre alliée pour la protection de vos proches.</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo"><img src="images/equipe.jpg" alt="Expert Auto"></div>
+                        <div class="team-info">
+                            <h4>Moussa Diarra</h4>
+                            <p class="team-role">Expert Sinistres Auto</p>
+                            <p>Réactivité et efficacité en cas de pépin.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#contact" class="btn btn-primary">Rejoindre l'équipe</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Map -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contactez-nous</h2>
+                    <p>Une question ? Un devis ? Notre équipe est à votre écoute.</p>
+                </div>
+
+                <div class="contact-container">
+                    <div class="contact-info-box">
+                        <h3>Envoyez-nous un message</h3>
+                        <p style="margin-bottom: 2rem; color: #ddd;">Remplissez ce formulaire, nous vous répondons sous
+                            24h.
+                        </p>
+
+                        <form>
+                            <div class="form-group">
+                                <label style="color:white;">Nom Complet</label>
+                                <input type="text" class="form-control" placeholder="Votre nom"
+                                    style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
+                            </div>
+                            <div class="form-group">
+                                <label style="color:white;">Email</label>
+                                <input type="email" class="form-control" placeholder="votre@email.com"
+                                    style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
+                            </div>
+                            <div class="form-group">
+                                <label style="color:white;">Téléphone</label>
+                                <input type="tel" class="form-control" placeholder="+225..."
+                                    style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
+                            </div>
+                            <div class="form-group">
+                                <label style="color:white;">Type de demande</label>
+                                <select class="form-control"
+                                    style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #333;">
+                                    <!-- Color #333 for readability in dropdown -->
+                                    <option>Devis Santé</option>
+                                    <option>Devis Auto</option>
+                                    <option>Information</option>
+                                    <option>Réclamation</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label style="color:white;">Message</label>
+                                <textarea class="form-control" rows="4" placeholder="Votre message..."
+                                    style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer</button>
+                        </form>
+                    </div>
+
+                    <div class="map-container">
+                        <!-- Google Maps Embed Placeholder -->
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.825679543886!2d-4.010833!3d5.289167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1eb4858804565%3A0x633917637841575e!2sPalais%20des%20Sports%20de%20Treichville!5e0!3m2!1sen!2sci!4v1703460000000!5m2!1sen!2sci"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                        <div style="padding: 1rem; background: #f9f9f9; margin-top: 1rem; border-radius: 8px;">
+                            <h4 style="margin-bottom:0.5rem; color: var(--color-primary);">Nos Coordonnées</h4>
+                            <p>📍 Treichville, Abidjan (Près Palais des Sports)</p>
+                            <p>📞 +225 27 20 00 00 00</p>
+                            <p>📧 contact@wayvance.ci</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" id="apropos">
+            <div class="container">
+                <div class="footer-grid">
+                    <div>
+                        <h3 style="color:white; margin-bottom:1rem; font-size:1.5rem;">Wayvance</h3>
+                        <p style="color:#aaa; line-height:1.6;">
+                            Rendre l'assurance accessible à tous les Ivoiriens. Solutions flexibles pour les
+                            professionnels
+                            et les familles.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4>Nos Services</h4>
+                        <ul>
+                            <li><a href="#produits">Assurance Santé</a></li>
+                            <li><a href="#produits">Assurance Auto</a></li>
+                            <li><a href="#simulateur">Nos Tarifs</a></li>
+                            <li><a href="#contact">Déclaration Sinistre</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Informations</h4>
+                        <ul>
+                            <li><a href="apropos.html">Qui sommes-nous ?</a></li>
+                            <li><a href="#">Conditions Générales</a></li>
+                            <li><a href="#">Politique de Confidentialité</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Suivez-nous</h4>
+                        <p style="margin-bottom:1rem; color:#aaa;">Rejoignez notre communauté</p>
+                        <div style="display:flex; gap:1rem;">
+                            <a href="#">Facebook</a>
+                            <a href="#">Instagram</a>
+                            <a href="#">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Wayvance Assurances. Tous droits réservés.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Modals -->
+        <div id="modal-sante" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="display: flex; align-items: center;"><img src="images/logo_sante.jpg" alt="Logo Santé"
+                            style="height: 1.8rem; width: auto; margin-right: 10px;"> Assurance Santé</h3>
+                    <span class="close-modal" onclick="closeModal('modal-sante')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p><strong>L'assurance santé Wayvance est spécialement conçue pour les travailleurs indépendants,
+                            commerçants, artisans et entrepreneurs qui n'ont pas accès aux mutuelles
+                            d'entreprise.</strong>
+                        Une solution complète qui protège toute votre famille avec une seule adhésion.</p>
+
+                    <h4>Détails des Avantages</h4>
+                    <ul>
+                        <li>
+                            <strong>Conçue pour les travailleurs indépendants :</strong> Accédez enfin à une couverture
+                            santé de qualité sans avoir besoin d'un employeur, avec des démarches simplifiées et
+                            adaptées à
+                            votre statut.
+                        </li>
+                        <li>
+                            <strong>Couverture familiale étendue :</strong> Une seule adhésion couvre jusqu'à 5 membres
+                            de
+                            votre famille (conjoint et enfants), pour une protection globale à tarif avantageux.
+                        </li>
+                        <li>
+                            <strong>Paiement flexible en plusieurs tranches :</strong> Échelonnez vos cotisations selon
+                            vos
+                            rentrées d'argent, avec des facilités de paiement mensuel, trimestriel ou semestriel.
+                        </li>
+                        <li>
+                            <strong>Deux formules au choix :</strong> Choisissez entre notre formule Essentielle (80% de
+                            remboursement) ou notre formule Premium (100% de remboursement) selon vos besoins et votre
+                            budget.
+                        </li>
+                        <li>
+                            <strong>Souscription simple et rapide :</strong> Adhérez en moins de 48h avec un minimum de
+                            documents : pièce d'identité, justificatif de domicile et certificat médical basique.
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                    <a href="nos-garanties.html" class="btn btn-primary">Nos garanties</a>
+                    <a href="#simulateur" class="btn btn-primary" onclick="closeModal('modal-sante')">Simuler ma
+                        Prime</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-auto" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Assurance Automobile</h3>
+                    <span class="close-modal" onclick="closeModal('modal-auto')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Protégez votre véhicule avec nos formules d'assurance automobile complètes.</strong> Que
+                        vous
+                        conduisiez une voiture, une moto, un tricycle ou un camion, Wayvance vous offre une couverture
+                        adaptée avec un service de dépannage réactif disponible 24h/24.</p>
+
+                    <h4>Explication des 3 Types de Couverture</h4>
+                    <ul>
+                        <li>
+                            <strong>TIERS SIMPLE - La protection de base obligatoire :</strong> Cette formule couvre
+                            votre
+                            responsabilité civile en cas de dommages causés à un tiers (personnes ou biens). C'est
+                            l'assurance minimale exigée par la loi pour circuler en Côte d'Ivoire. Elle inclut la prise
+                            en
+                            charge des frais médicaux et matériels des victimes d'un accident dont vous seriez
+                            responsable.
+                        </li>
+                        <li>
+                            <strong>TIERS COMPLET - Protection renforcée :</strong> En plus de la responsabilité civile,
+                            cette formule protège votre véhicule contre le vol, l'incendie, le bris de glace et les
+                            événements climatiques (tempête, inondation). Elle couvre également les dommages causés par
+                            des
+                            tiers non identifiés ou non assurés, vous offrant ainsi une sécurité accrue.
+                        </li>
+                        <li>
+                            <strong>TOUS RISQUES - La couverture maximale :</strong> C'est notre formule la plus
+                            complète
+                            qui couvre tous les dommages subis par votre véhicule, même en cas d'accident responsable.
+                            Elle
+                            inclut la Tiers Complet plus la garantie dommages tous accidents, le prêt d'un véhicule de
+                            remplacement, l'assistance 0 km et une protection juridique. Idéale pour les véhicules neufs
+                            ou
+                            de grande valeur.
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="#comparateur" class="btn btn-primary" onclick="closeModal('modal-auto')">Comparer les
+                        Tarifs</a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Scripts -->
+        <script src="js/scripts.js"></script>
+</body>
+
+</html>

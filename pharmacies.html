@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacies Partenaires | Wayvance Assurances</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Liste des pharmacies partenaires du réseau Wayvance Assurances.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.jpg" alt="Wayvance Assurances Logo">
+                </a>
+
+                <nav>
+                    <div class="hamburger">☰</div>
+                    <ul class="nav-menu">
+                        <li><a href="index.html#accueil" class="nav-link">Accueil</a></li>
+                        <li><a href="index.html#produits" class="nav-link">Nos Offres</a></li>
+                        <li><a href="index.html#simulateur" class="nav-link">Nos Tarifs</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="nav-link active dropdown-toggle">Réseau de Soins</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="pharmacies.html" class="dropdown-item">PHARMACIES PARTENAIRES</a></li>
+                                <li><a href="prestataires.html" class="dropdown-item">PRESTATAIRES PARTENAIRES</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="apropos.html" class="nav-link">À Propos</a></li>
+                        <li><a href="index.html#contact" class="btn btn-contact">Nous Contacter</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header-contact-bar">
+                <div class="phone-info">
+                    <span class="contact-icon">📞</span>
+                    <span>(+225) 07 78 94 99 09</span>
+                </div>
+                <div class="location-info">
+                    <span class="contact-icon">📍</span>
+                    <span>ABIDJAN-Treichville</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <section class="page-content" style="padding: 150px 0 60px;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pharmacies Partenaires</h2>
+                <p>Retrouvez la liste de nos pharmacies partenaires. Utilisez la barre de recherche pour filtrer par nom
+                    ou par commune.</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="partners-search-container">
+                <input type="text" id="searchInput" class="partners-search-input"
+                    placeholder="Rechercher une pharmacie, une commune..." onkeyup="filterTable()">
+                <span class="partners-search-icon">🔍</span>
+            </div>
+
+            <!-- Table Container -->
+            <div class="partners-table-wrapper">
+                <table class="partners-table" id="pharmacyTable">
+                    <thead>
+                        <tr>
+                            <th>Commune / Ville</th>
+                            <th>Nom de la Pharmacie</th>
+                            <th>Situation Géographique</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Rows will be populated by JS -->
+                    </tbody>
+                </table>
+                <div id="noResults" class="no-results-message">
+                    Aucune pharmacie trouvée pour cette recherche.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Data Source
+        const pharmacies = [
+            // PORT-BOUËT
+            { commune: "PORT-BOUËT", nom: "PHARMACIE BELLEVILLE DE GONZAGUE", loc: "QUARTIER BELLEVILLE", tel: "01 07 48 41 / 77 82 26 68" },
+            { commune: "PORT-BOUËT", nom: "PHARMACIE ROUTE DE BASSAM", loc: "PRES DU MARCHE DE JEAN FOLLY", tel: "21 00 27 35 / 02 03 65 99" },
+            { commune: "PORT-BOUËT", nom: "PHARMACIE DE LA BALTIQUE", loc: "FACE A L’ABATTOIR DE PORT-BOUET", tel: "27 21 27 66 71" },
+            { commune: "PORT-BOUËT", nom: "PHARMACIE MALON", loc: "VERS LA MOSQUEE", tel: "07 90 68 50" },
+            // KOUMASSI
+            { commune: "KOUMASSI", nom: "PHARMACIE DU SOLEIL", loc: "BOULEVARD DU GABON A 200 M DE LA POSTE", tel: "21 36 05 98" },
+            { commune: "KOUMASSI", nom: "PHARMACIE KAHIRA", loc: "BOULEVARD DU CAMEROUM LIGNE BUS 05", tel: "21 36 39 84 / 58 09 47 61" },
+            { commune: "KOUMASSI", nom: "PHARMACIE FANNY", loc: "AKLOMIABLA TERMINUS BUS 32 ET 05", tel: "21 36 09 07" },
+            { commune: "KOUMASSI", nom: "PHARMACIE STE AGATE", loc: "KOUMASSI REMBLAIS CARREFOUR COLOMBE", tel: "27 21 56 51 88 / 01 40 23 63 23" },
+            { commune: "KOUMASSI", nom: "PHARMACIE DU CANAL", loc: "REMBLAIS", tel: "07 68 65 26 09" },
+            { commune: "KOUMASSI", nom: "PHARMACIE ABYA", loc: "REMBLAIS NON LOIN DE LA STATION PETROCI", tel: "27 21 28 62 36 / 01 01 01 23 32" },
+            { commune: "KOUMASSI", nom: "PHARMACIE REGINA", loc: "KOUMASSI SOGEFIHA LIGNE 32", tel: "27 21 36 68 65" },
+            // MARCORY
+            { commune: "MARCORY", nom: "PHARMACIE PTT", loc: "DERRIERE COURS LA MARTINE", tel: "21 26 98 93" },
+            { commune: "MARCORY", nom: "PHARMACIE DES LAGUNES", loc: "RUE DE LA PAIX EN FACE DE LA STATION SHELL", tel: "21 26 12 40 / 21 26 63 80" },
+            { commune: "MARCORY", nom: "PHARMACIE HIBISCUS", loc: "BOULEVARD DE BRAZAVILLE, PRES DE LA PMI", tel: "21 26 31 66 / 47 50 92 93" },
+            { commune: "MARCORY", nom: "PHARMACIE SAINTE THERESE", loc: "EN FACE L’EGLISE SAINTE THERESE", tel: "21 26 77 10 / 01 38 17 78" },
+            { commune: "MARCORY", nom: "PHARMACIE METROPOLE", loc: "A 100 M DE LA PMI DE MARCORY", tel: "07 08 23 92 60 / 01 73 49 14 24" },
+            { commune: "MARCORY", nom: "PHARMACIE TSF", loc: "NON LOIN DU COMMISSARIAT DU 9ème ARRONDISSEMENT", tel: "27 21 26 78 12 / 07 07 23 94 54" },
+            { commune: "MARCORY", nom: "PHARMACIE PERUSIA/ BIETRY", loc: "RUE PIERRE ET MARIE-CURIE, PRES DE RENAULT", tel: "77 34 22 80" },
+            { commune: "MARCORY", nom: "PHARMACIE ELISHAMA", loc: "MARCORY CENTRE COMMERCIAL AVANT LE 3ème PONT", tel: "07 78 35 03 64" },
+            { commune: "MARCORY", nom: "PHARMACIE DU GRAND MARCHE", loc: "MARCORY REMBLAIS EN FACE DU GRAND MARCHE", tel: "27 21 56 90 96 / 07 07 01 14 06" },
+            { commune: "MARCORY", nom: "PHARMACIE DE L’AMITIE", loc: "PRES DU 3ème PONT AVANT LE GRAND MARCHE", tel: "27 21 39 83 81 / 07 77 30 80 32" },
+            { commune: "MARCORY", nom: "PHARMACIE SAINTE MARIE MAJEURE", loc: "MARCORY ZONE 4 RUE DU CANAL", tel: "27 21 25 54 07 / 01 40 30 69 80" },
+            // PLATEAU
+            { commune: "PLATEAU", nom: "PHARMACIE KORALIE", loc: "NON LOIN DE L'HOTEL THIAMA ET DE LA RADIO RTI", tel: "09 56 11 11" },
+            { commune: "PLATEAU", nom: "PHARMACIE PLACE DE LA REPUBLIQUE", loc: "NON LOIN DU SIEGE DE ECOBANK", tel: "22 46 29 29 / 07 08 66 51" },
+            { commune: "PLATEAU", nom: "PHARMACIE DU BD CARDE", loc: "EN FACE DU JARDIN DES RAILS", tel: "25 20 00 37 82 / 07 79 59 46 59" },
+            { commune: "PLATEAU", nom: "PHARMACIE LONGCHAMP", loc: "PLATEAU", tel: "27 20 22 32 62 / 27 20 22 75 98" },
+            // TREICHVILLE
+            { commune: "TREICHVILLE", nom: "PHARMACIE AVENUE 8", loc: "AVENUE 8, PRES DU COMMISSARIAT DU 2e ARRONDISSMENT", tel: "05 74 86 83 38" },
+            { commune: "TREICHVILLE", nom: "PHARMACIE STE JEANNE", loc: "EN FACE DE LA STATION PETROCI, MARCHE DE BELLEVILLE", tel: "21 24 57 41" },
+            { commune: "TREICHVILLE", nom: "PHARMACIE ALPHA 16", loc: "AVENUE 16, RUE 17, A COTE DE TREICH-HOTEL", tel: "21 25 88 80 / 07 07 81 12 62" },
+            { commune: "TREICHVILLE", nom: "PHARMACIE NOTRE DAME", loc: "AVENUE 21, RUE 38, EN FACE DE LA STATION SHELL", tel: "21 24 10 60" },
+            { commune: "TREICHVILLE", nom: "PHARMACIE RUE 12", loc: "RUE 12 NON DE L’AGENCE MTN, EN FACE DE PETIT PARIS", tel: "21 24 24 28 / 54 40 32 73" },
+            { commune: "TREICHVILLE", nom: "PHARMACIE DES BRASSEURS", loc: "FACE AU CHU DE TREICHVILLE", tel: "27 21 25 17 25" },
+            // COCODY
+            { commune: "COCODY", nom: "PHARMACIE LES SEPT COLONNES", loc: "BOULEVARD DES MARTYRS, CARREFOUR LA VIE", tel: "22 44 02 96" },
+            { commune: "COCODY", nom: "PHARMACIE STE CECILE (VALLON)", loc: "EN FACE DE L'EGLISE SAINTE CECILE, 2 PLATEAU-VALLON", tel: "27 22 42 63 35" },
+            { commune: "COCODY", nom: "PHARMACIE DU VALLON", loc: "2 PLATEAUX VALLONS - RUE DES JARDINS", tel: "22 41 35 14" },
+            { commune: "COCODY", nom: "PHARMACIE ST BERNARD", loc: "CITE ATTOBAN, PRES DE CIPHARM", tel: "22 43 65 46 / 22 43 66 21" },
+            { commune: "COCODY", nom: "PHARMACIE JARDIN D'EDEN", loc: "RIVIERA 4 ROUTE M'BADON, CITE EDEN", tel: "79 19 20 04 / 01 37 58 10" },
+            { commune: "COCODY", nom: "PHARMACIE ARC-EN-CIEL", loc: "RUE DES JARDINS EN FACE SOCOCE, 2 PLATEAUX", tel: "22 41 33 90" },
+            { commune: "COCODY", nom: "PHARMACIE LATRILLE", loc: "BOULEVARD LATRILLE, FACE A L’ENA", tel: "22 41 62 62" },
+            { commune: "COCODY", nom: "PHARMACIE D'ANGRE", loc: "A COTE DU 22ème ARRONDISSEMENT – ANGRE 7e TRANCHE", tel: "22 42 11 06 / 22 42 57 04" },
+            { commune: "COCODY", nom: "PHARMACIE NOEMIE", loc: "2 PLATEAUX, CARREFOUR LES OSCARS", tel: "22 52 20 51 / 48 64 67 64" },
+            { commune: "COCODY", nom: "PHARMACIE STAR 9 D’ANGRE", loc: "ANGRE, FACE A LA CITE STAR 9 B", tel: "22 52 22 19" },
+            { commune: "COCODY", nom: "PHARMACIE DU FUTUR", loc: "RIVIERA PALMERAIE A COTE DE SOCOPRIX", tel: "22 47 41 57 / 77 31 47 15" },
+            { commune: "COCODY", nom: "PHARMACIE DES HALLES", loc: "CENTRE COMMERCIAL SOCOCE – 2 PLATEAUX", tel: "22 41 92 94 / 07 00 25 12" },
+            { commune: "COCODY", nom: "GRANDE PHARMACIE DES 2 PLATEAUX", loc: "BD LATRILLE, FACE A LA SGBCI SICOGI", tel: "22 41 36 04" },
+            { commune: "COCODY", nom: "PHARMACIE HOSANNA", loc: "RIVIERA TRIANGLE, PRES DE LA CLINIQUE SAINT VIATEUR", tel: "27 22 55 25 59" },
+            { commune: "COCODY", nom: "PHARMACIE REDEMPTION", loc: "ANGRE CHATEAU", tel: "25 22 01 61 96" },
+            { commune: "COCODY", nom: "PHARMACIE AVE MARIA", loc: "ANGRE 8ème TRANCHE", tel: "07 07 53 49 88" },
+            { commune: "COCODY", nom: "PHARMACIE LES ARUMS", loc: "ANGRE 8ème TRANCHE", tel: "27 22 50 66 40" },
+            { commune: "COCODY", nom: "PHARMACIE DE COCODY", loc: "NON LOIN DU MARCHE DE COCODY", tel: "27 22 44 24 95" },
+            { commune: "COCODY", nom: "PHARMACIE VICTOIRE-MARIE", loc: "BLOCKHAUS, A 200M DE L’HOTEL IVOIRE", tel: "27 22 48 68 91" },
+            // YOPOUGON
+            { commune: "YOPOUGON", nom: "PHARMACIE YACINE", loc: "TOIT ROUGE, ENTRE LA POSTE ET LE COLLEGE AFFOUMOU YAPO", tel: "41 00 02 43 / 89 84 49 82" },
+            { commune: "YOPOUGON", nom: "PHARMACIE SEGAÏ", loc: "WASSAKARA, EN FACE DU MARCHE", tel: "23 52 21 10" },
+            { commune: "YOPOUGON", nom: "LA PHARMACIE NIANGON NORD", loc: "ROUTE DE DABOU, ENTRE SICOGI ACADEMIE ET CITE VERTE", tel: "27 23 46 32 99" },
+            { commune: "YOPOUGON", nom: "PHARMACIE BEYNIOUAH", loc: "NIANGON SUD A GAUCHE", tel: "27 23 46 01 02" },
+            { commune: "YOPOUGON", nom: "PHARMACIE DES 3 PONTS", loc: "SOGEFIHA", tel: "01 03 11 49 26" },
+            { commune: "YOPOUGON", nom: "PHARMACIE SIPOREX", loc: "SIPOREX", tel: "07 57 49 22 97" },
+            { commune: "YOPOUGON", nom: "NOUVELLE PHARMACIE TOIT ROUGE", loc: "TOIT ROUGE", tel: "27 23 45 16 93" },
+            { commune: "YOPOUGON", nom: "PHARMACIE SHALOM", loc: "SICOGI PONT VAGABOND", tel: "07 58 59 79 50" },
+            { commune: "YOPOUGON", nom: "PHARMACIE CHAYAH (EX KOUTE)", loc: "TERMINUS DU BUS 40", tel: "01 03 38 74 25" },
+            { commune: "YOPOUGON", nom: "PHARMACIE LAOULO", loc: "NOUVEAU BUREAU SODECI", tel: "27 23 41 79 10" },
+            { commune: "YOPOUGON", nom: "PHARMACIE SAINT HERMANN", loc: "NIANGON NON LOIN DE LA BASE CIE", tel: "07 08 92 03 34" },
+            // VILLES DE L'INTERIEUR ET AUTRES
+            { commune: "DABOU", nom: "PHARMACIE DES LAGUNES", loc: "NON LOIN DE L’HOPITAL GENERAL", tel: "27 23 57 21 45" },
+            { commune: "DABOU", nom: "PHARMACIE ABRAHAM", loc: "DABOU", tel: "07 57 48 53 58" },
+            { commune: "ABOBO", nom: "PHARMACIE LE MONASTERE", loc: "ROUTE D’ABOBO BAOULE A 500 M SAMAKE", tel: "24 39 67 01" },
+            { commune: "ABOBO", nom: "PHARMACIE MAGNIFICAT", loc: "AGNISSANKOI NON LOIN DU DEPOT SOTRA", tel: "25 24 00 42 36" },
+            { commune: "ABOBO", nom: "PHARMACIE D’ABOBOTE", loc: "ROUTE DU ZOO, PRES DE LA CLINIQUE CENTRALE", tel: "24 39 69 87" },
+            { commune: "ABOBO", nom: "PHARMACIE DE LA MAIRIE ABOBO", loc: "ABOBO PK18 / FACE NOUVELLE MAIRIE", tel: "07 49 38 10 80" },
+            { commune: "ADJAME", nom: "PHARMACIE DE LA GRANDE MOSQUEE", loc: "NON LOIN DE LA GRANDE MOSQUEE", tel: "-" },
+            { commune: "ADJAME", nom: "PHARMACIE DE LA MAIRIE", loc: "BOULEVARD NANGUI ABROGOUA", tel: "20 37 99 99" },
+            { commune: "BINGERVILLE", nom: "PHARMACIE DU MARCHE", loc: "APRES CARREFOUR BANGUI DROME", tel: "05 04 00 15 26" },
+            { commune: "BINGERVILLE", nom: "PHARMACIE CARREFOUR SANTE", loc: "CARREFOUR AKOUAI SANTE", tel: "27 22 40 34 37" },
+            { commune: "BINGERVILLE", nom: "PHARMACIE JULES VERNE", loc: "ROUTE DE BINGERVILLE, FACE COLLEGE JULES VERNE", tel: "27 21 77 44 50" },
+            { commune: "BINGERVILLE", nom: "PHARMACIE SAINT MARTIN", loc: "FAYA GENIE 2000", tel: "27 22 55 69 39" },
+            { commune: "BONOUA", nom: "PHARMACIE EDEN", loc: "NON LOIN DE LA MOSQUEE", tel: "21 31 02 07" },
+            { commune: "BONOUA", nom: "PHARMACIE EBENEZER", loc: "A L’ENTREE DE LA VILLE", tel: "21 30 90 55" },
+            { commune: "SAN PEDRO", nom: "PHARMACIE ROI DAVID", loc: "QUARTIER MANZAN", tel: "07 49 79 56 58" },
+            { commune: "SAN PEDRO", nom: "PHARMACIE LES BEATITUDES", loc: "QUARTIER LAC", tel: "01 01 61 57 67" },
+            { commune: "ADIAKE", nom: "PHARMACIE DE LA GARE", loc: "GARE D’ADIAKE", tel: "07 77 78 72 40" },
+            { commune: "GRAND BASSAM", nom: "PHARMACIE DU MARCHE", loc: "NON LOIN DU GRAND MARCHE", tel: "07 79 85 87 18" },
+            { commune: "GRAND BASSAM", nom: "PHARMACIE DU LITTORAL", loc: "EN FACE DE L’HÔPITAL GENERAL", tel: "07 07 45 84 79" },
+            { commune: "GRAND BASSAM", nom: "PHARMACIE YELE", loc: "GRAND BASSAM", tel: "27 21 30 26 85" },
+            { commune: "YAMOUSSOUKRO", nom: "PHARMACIE DE YAMOUSSOUKRO", loc: "EN FACE DU GRAND MARCHE", tel: "27 30 64 04 12" },
+            { commune: "YAMOUSSOUKRO", nom: "PHARMACIE MOROFE", loc: "QUARTIER MOROFE", tel: "07 57 49 23 13" },
+            { commune: "YAMOUSSOUKRO", nom: "PHARMACIE DES LACS", loc: "NON LOIN DU CHR", tel: "-" },
+            { commune: "DIVO", nom: "GRANDE PHARMACIE DE GREMIAN", loc: "DIVO", tel: "07-57-70-55-33" },
+            { commune: "AGBOVILLE", nom: "PHARMACIE MOAYE", loc: "AGBOVILLE", tel: "07-78-33-40-88" },
+            { commune: "AGBOVILLE", nom: "PHARMACIE SINI KENEYA", loc: "AGBOVILLE", tel: "07-58-09-46-03" },
+            { commune: "AGBOVILLE", nom: "GRANDE PHARMACIE DU COMMERCE", loc: "AGBOVILLE", tel: "01-02-51-56-10" },
+            { commune: "ADZOPE", nom: "PHARMACIE D’ADZOPE", loc: "ADZOPE", tel: "27-23-54-19-11" },
+            { commune: "ADZOPE", nom: "PHARMACIE DU MASSAN", loc: "RUE DU COMMERCE", tel: "27 23 54 03 42" },
+            { commune: "ANYAMA", nom: "PHARMACIE DU CHATEAU", loc: "ANYAMA", tel: "07 58 17 29 91" },
+            { commune: "HIRE", nom: "PHARMACIE MODERNE DE HIRE", loc: "HIRE", tel: "07-07-32-41-58" },
+            { commune: "DALOA", nom: "PHARMACIE DU COMMERCE", loc: "RUE DU COMMERCE", tel: "27 32 78 20 82" },
+            { commune: "DALOA", nom: "PHARMACIE DU PARVIS", loc: "QUARTIER TAZIBOUO", tel: "27 32 78 70 57" },
+            { commune: "DALOA", nom: "PHARMACIE MAYESS", loc: "QUARTIER LOBIA 2", tel: "27 32 78 15 08" },
+            { commune: "DALOA", nom: "PHARMACIE DOLORE", loc: "QUARTIER SOLEIL 2", tel: "07 08 09 42 03" },
+            { commune: "DALOA", nom: "PHARMACIE ANEAUD", loc: "QUARTIER SOLEIL 1", tel: "27 32 78 28 28" },
+            { commune: "GAGNOA", nom: "PHARMACIE SAINTE PAULINE", loc: "QUARTIER COMMERCE", tel: "27 32 77 25 62" },
+            { commune: "BOUAKE", nom: "PHARMACIE OPRIEL", loc: "AIR FRANCE 3", tel: "07 07 07 89 85" },
+            { commune: "BOUAKE", nom: "PHARMACIE KOKO", loc: "QUARTIER KOKO", tel: "27 24 55 79 22" },
+            { commune: "BOUAKE", nom: "PHARMACIE VICTOR TENENA", loc: "BOUAKE", tel: "27 31 63 14 05" },
+            { commune: "BOUAKE", nom: "PHARMACIE BELLE VILLE", loc: "QUARTIER BELLE VILLE", tel: "07 57 14 38 30" },
+            { commune: "BOUAKE", nom: "PHARMACIE DU COMMERCE KODJO", loc: "QUARTIER COMMERCE", tel: "27 31 63 35 73" },
+            { commune: "BOUAKE", nom: "PHARMACIE SAINTE MARIE", loc: "N’GATTAKRO", tel: "01 02 50 32 77" },
+            { commune: "BOUAKE", nom: "PHARMACIE MODERNE KENNEDY", loc: "QUARTIER KENNEDY", tel: "07 07 84 65" },
+            { commune: "ISSIA", nom: "PHARMACIE NOTRE DAME", loc: "ISSIA", tel: "07 07 07 09 71" },
+            { commune: "TOULEPLEU", nom: "PHARMACIE EL SHADDAI", loc: "TOULEPLEU", tel: "07 09 34 22 73" },
+            { commune: "GUIGLO", nom: "PHARMACIE DE LA MAIRIE", loc: "NON LOIN DE LA MAIRIE", tel: "07 57 02 02 28" },
+            { commune: "GUIGLO", nom: "PHARMACIE DU MARCHE", loc: "GUIGLO", tel: "07 57 75 12 13" },
+            { commune: "GUIGLO", nom: "PHARMACIE DE GUIGLO", loc: "GUIGLO", tel: "27 33 70 51 61" },
+            { commune: "TABOU", nom: "LA GRANDE PHARMACIE", loc: "TABOU", tel: "27 35 95 28 52" },
+            { commune: "FERKE", nom: "PHARMACIE PRINCIPALE", loc: "FERKESSEDOUGOU", tel: "27 36 86 84 75" },
+            { commune: "BONON", nom: "PHARMACIE DE BONON", loc: "BONON", tel: "07 47 91 48 77" },
+            { commune: "BONON", nom: "PHARMACIE BELLE VILLE", loc: "BONON", tel: "07 09 02 56 87" },
+            { commune: "DUEKOUE", nom: "PHARMACIE DE LA GARE", loc: "DUEKOUE", tel: "07 09 64 00 66" },
+            { commune: "MEAGUI", nom: "PHARMACIE MODERNE", loc: "RUE PRINCIPALE MEAGUI", tel: "07 48 45 49 41" },
+            { commune: "ABOISSO", nom: "PHARMACIE NOTRE DAME", loc: "ASSOUBA", tel: "01 01 05 26 96" },
+            { commune: "ODIENNE", nom: "PHARMACIE DES FRONTIERES", loc: "ODIENNE", tel: "27 24 36 09 98" }
+        ];
+
+        // Function to render table
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            const noResults = document.getElementById('noResults');
+            tbody.innerHTML = '';
+
+            if (data.length === 0) {
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${item.commune}</strong></td>
+                    <td class="partner-name">${item.nom}</td>
+                    <td class="partner-location">${item.loc}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Filter function
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+
+            const filteredData = pharmacies.filter(item => {
+                return item.commune.toUpperCase().includes(filter) ||
+                    item.nom.toUpperCase().includes(filter) ||
+                    item.loc.toUpperCase().includes(filter);
+            });
+
+            renderTable(filteredData);
+        }
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable(pharmacies);
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer" id="propos">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="color:white; margin-bottom:1rem; font-size:1.5rem;">Wayvance</h3>
+                    <p style="color:#aaa; line-height:1.6;">
+                        Rendre l'assurance accessible à tous les Ivoiriens. Solutions flexibles pour les professionnels
+                        et les familles.
+                    </p>
+                </div>
+
+                <div>
+                    <h4>Nos Services</h4>
+                    <ul>
+                        <li><a href="index.html#produits">Assurance Santé</a></li>
+                        <li><a href="index.html#produits">Assurance Auto</a></li>
+                        <li><a href="index.html#simulateur">Simulateur de Prime</a></li>
+                        <li><a href="index.html#contact">Déclaration Sinistre</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Informations</h4>
+                    <ul>
+                        <li><a href="apropos.html">Qui sommes-nous ?</a></li>
+                        <li><a href="#">Conditions Générales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Suivez-nous</h4>
+                    <p style="margin-bottom:1rem; color:#aaa;">Rejoignez notre communauté</p>
+                    <div style="display:flex; gap:1rem;">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Wayvance Assurances. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Reuse existing modals for consistency if needed, or link back to index for them. 
+         For simplicity, simplest specific script here or reuse main script if applicable without errors.
+         The main script might expect elements that are not here, so being careful. -->
+    <script src="js/scripts.js"></script>
+
+    <!-- Modal functionality structure needs to be present if main script runs it 
+         or we need to ensure the script doesn't crash if elements are missing. 
+         I will include the 'About' modal since it's in the menu. -->
+
+
+
+</body>
+
+</html>
